@@ -1,0 +1,13 @@
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.exe.config
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.exe
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.pdb
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.xml
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbprojAssemblyReference.cache
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Form1.resources
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Resources.resources
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.GenerateResource.cache
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.CoreCompileInputs.cache
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.exe
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.xml
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.pdb
+H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Main.resources
