@@ -11,3 +11,17 @@ H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\Killa
 H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.xml
 H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.pdb
 H:\Term 2 - 2020\SDD\Assessment\Killarney Club\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Main.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.exe.config
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.exe
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.pdb
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.xml
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbprojAssemblyReference.cache
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Form1.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Main.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Resources.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Scoreboard.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.GenerateResource.cache
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.CoreCompileInputs.cache
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.exe
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.xml
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.pdb
