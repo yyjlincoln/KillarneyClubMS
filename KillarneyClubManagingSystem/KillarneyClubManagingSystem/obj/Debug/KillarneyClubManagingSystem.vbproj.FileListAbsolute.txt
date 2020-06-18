@@ -25,3 +25,4 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.exe
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.xml
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.pdb
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Dialog.resources
