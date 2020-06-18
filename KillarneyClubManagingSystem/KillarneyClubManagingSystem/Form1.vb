@@ -40,6 +40,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Debug.Print(WriteSettings("test", {"test", "test2"}))
         Dim r = ReadSettings("Data")
         If r.count > 0 Then
             For x As Integer = 0 To r.count - 1
@@ -71,7 +72,7 @@
         count.Text = "Total atheletes: " & ListBox1.Items.Count
     End Sub
 
-    Public Function ReadSettings(Read)
+    Public Function ReadSettings(Block)
         Dim Rd As New System.IO.StreamReader(FileName)
         Dim l = Split(Rd.ReadToEnd(), System.Environment.NewLine)
         Dim r = New List(Of String)
@@ -82,15 +83,57 @@
             ElseIf l(x).StartsWith("$ ") Then
                 ' Command Section
                 CurrentRead = l(x).Substring(2)
+                Debug.Print("CurrentRead:" & CurrentRead)
                 Continue For
             End If
 
-            If CurrentRead = Read Then
+            If CurrentRead = Block Then
+                Debug.Print("Write")
                 r.Add(l(x).Replace("##", "#").Replace("$$", "$"))
             End If
         Next
         Rd.Close()
         Return r
+    End Function
+
+    Public Function WriteSettings(Block, Data)
+        Dim Rd As New System.IO.StreamReader(FileName)
+        Dim l = Split(Rd.ReadToEnd(), System.Environment.NewLine)
+        Dim newl As New List(Of String)
+        Rd.Close()
+        ' File Read
+        Dim CurrentRead = "Nothing"
+
+        For x As Integer = 0 To l.Count - 1
+            If l(x).StartsWith("$ ") Then
+                CurrentRead = l(x).Substring(2)
+
+                If CurrentRead <> Block Then
+                    newl.Add(l(x))
+                End If
+
+                Continue For
+            End If
+
+            If CurrentRead <> Block Then
+                ' Start overwrite
+                newl.Add(l(x))
+            End If
+        Next
+
+        Dim Wt As New System.IO.StreamWriter(FileName)
+        ' Init writer
+        Wt.Write("")
+        For x As Integer = 0 To newl.Count - 1
+            Wt.WriteLine(newl(x))
+        Next
+        Wt.WriteLine("$ " + Block)
+        For x As Integer = 0 To Data.Length - 1
+            Wt.WriteLine(Data(x))
+        Next
+        Wt.Close()
+        Return 0
+
     End Function
 
     Public Function UpdateNames(r)
