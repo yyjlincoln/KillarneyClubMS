@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class Master
     Public FileName As String = "data.ini"
     Public ExitFlag As Boolean = False
     Public ChangeFlag As Boolean = False
@@ -162,7 +162,6 @@
             End If
 
             If CurrentRead <> Block Then
-                ' Start overwrite
                 newl.Add(l(x))
             End If
         Next
@@ -185,11 +184,11 @@
 
         Try
             For x As Integer = 0 To Data.Count - 1
-                Wt.WriteLine(Data(x))
+                Wt.WriteLine(Data(x).replace("#", "##").replace("$", "$$"))
             Next
         Catch ex As Exception
             For x As Integer = 0 To Data.Length - 1
-                Wt.WriteLine(Data(x))
+                Wt.WriteLine(Data(x).replace("#", "##").replace("$", "$$"))
             Next
         End Try
 
@@ -203,10 +202,10 @@
     End Function
 
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles confirm.Click
-        UpdateNames(ListBox1.Items)
         If MsgBox("Continue with " & ListBox1.Items.Count & " athletes? You can not change it later!", Title:=
                "Confirmation", Buttons:=
                vbYesNo) = vbYes Then
+            UpdateNames(ListBox1.Items)
             Main.Show()
             Main.Activate()
             MyBase.Hide()

@@ -16,7 +16,6 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.pdb
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\bin\Debug\KillarneyClubManagingSystem.xml
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbprojAssemblyReference.cache
-C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Form1.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Main.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Resources.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Scoreboard.resources
@@ -26,3 +25,5 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.xml
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.pdb
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Dialog.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Management.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Master.resources
