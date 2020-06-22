@@ -1,32 +1,32 @@
 ﻿Public Class Management
-    Implements Master.UFIObjects
+    Implements UFIMod.UFIBase
     Public Mode As String
     Public Name As String
-    Public Property UFI As String Implements Master.UFIObjects.UFI ' Unique Form Identifier
+    Public Property UFI As String Implements UFIMod.UFIBase.UFI ' Unique Form Identifier
+    Public Function Reload() Implements UFIMod.UFIBase.Reload
+
+    End Function
+
 
     Private Sub EventManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
     Public Function init(Mode, eName)
         Me.Mode = Mode
         Me.Name = eName
-        Me.UFI = Mode + "::" + eName
 
-        If Main.UFIList.Contains(Me.UFI) Then
-            MsgBox("You already have a managing window opened up.")
+        If Not UFIMod.RegisterUFI("ManagementWindows::" & Mode & ":" & eName, Me) Then
+            UFIMod.GetInstanceByUFI("ManagementWindows::" & Mode & ":" & eName).Activate()
             Me.Close()
             Return False
         End If
 
-        Main.UFIList.Add(Me.UFI)
-        Main.UFIWindows.Add(Me)
-
-        Me.Text = Mode & " Management: " & eName
+        '        Me.Text = Mode & " Management: " & eName
+        Me.Text = Me.UFI
         Label1.Text = "Managing " & Mode & ": " & eName
         AddHandler Me.FormClosing, Function()
-                                       Main.UFIList.Remove(Mode + "::" + eName)
-                                       Main.UFIWindows.Remove(Me)
-                                       Main.Reload()
+                                       UFIMod.DeregisterUFI(Me.UFI)
                                        Main.ChainReload()
                                    End Function
         Me.Show()
@@ -37,9 +37,6 @@
 
     Public Function ReadData()
 
-    End Function
-    Public Function Reload() As Boolean Implements Master.UFIObjects.Reload
-        Return True
     End Function
 
 End Class

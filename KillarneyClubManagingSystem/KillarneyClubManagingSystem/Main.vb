@@ -1,13 +1,11 @@
 ﻿Public Class Main
-    Public UFIList As List(Of String) = New List(Of String)
-    Public UFIWindows As List(Of Master.UFIObjects) = New List(Of Master.UFIObjects)
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Reload()
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
         If MsgBox("Exit Program?", vbYesNo) = vbYes Then
-            Master.Close() ' Ends the whole program
+            AtheleteInput.Close() ' Ends the whole program
             End
         End If
     End Sub
@@ -16,8 +14,8 @@
         Reload()
     End Sub
     Public Function Reload()
-        Dim AtheleteNames As List(Of String) = Master.ReadSettings("Data:AtheleteNames")
-        Dim Events As List(Of String) = Master.ReadSettings("General:Events")
+        Dim AtheleteNames As List(Of String) = DBOps.ReadSettings("Data:AtheleteNames")
+        Dim Events As List(Of String) = DBOps.ReadSettings("General:Events")
         ListBox1.Items.Clear()
         ListBox2.Items.Clear()
         For x As Integer = 0 To AtheleteNames.Count - 1
@@ -29,8 +27,10 @@
         Return 0
     End Function
     Public Function ChainReload()
-        For x As Integer = 0 To UFIWindows.Count - 1
-            UFIWindows(x).Reload()
+        Me.Reload()
+        Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
+        For x As Integer = 0 To toReload.Count - 1
+            toReload(x).Reload()
         Next
     End Function
     Private Sub EventDClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick

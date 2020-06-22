@@ -27,3 +27,4 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Dialog.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Management.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Master.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.AtheleteInput.resources

@@ -73,6 +73,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBOps.vb" />
+    <Compile Include="DBOverlay.vb" />
     <Compile Include="Dialog.Designer.vb">
       <DependentUpon>Dialog.vb</DependentUpon>
     </Compile>
@@ -85,17 +87,23 @@
     <Compile Include="Management.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master.vb">
+    <Compile Include="AtheleteInput.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master.Designer.vb">
-      <DependentUpon>Master.vb</DependentUpon>
+    <Compile Include="AtheleteInput.Designer.vb">
+      <DependentUpon>AtheleteInput.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
     </Compile>
     <Compile Include="Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master.Designer.vb">
+      <DependentUpon>Master.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Master.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -119,6 +127,7 @@
     <Compile Include="Scoreboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UFIMod.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialog.resx">
@@ -127,11 +136,14 @@
     <EmbeddedResource Include="Management.resx">
       <DependentUpon>Management.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master.resx">
-      <DependentUpon>Master.vb</DependentUpon>
+    <EmbeddedResource Include="AtheleteInput.resx">
+      <DependentUpon>AtheleteInput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master.resx">
+      <DependentUpon>Master.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
