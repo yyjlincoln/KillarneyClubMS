@@ -27,11 +27,19 @@
         Return 0
     End Function
     Public Function ChainReload()
+        Dim diag = New Dialog().Init("Main::ChainReloadDialog", "Updating and recalculating everything...")
+        diag.show()
+        diag.activate()
         Me.Reload()
+
         Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
         For x As Integer = 0 To toReload.Count - 1
+            diag.u("Now calculating window of UFI " & toReload(x).UFI)
+            diag.Update()
             toReload(x).Reload()
+
         Next
+        diag.close()
     End Function
     Private Sub EventDClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         If ListBox1.SelectedIndex <> -1 Then
@@ -50,4 +58,14 @@
 
     End Sub
 
+    Private Sub Listbox1KeyDown(sender As Object, e As KeyEventArgs) Handles ListBox1.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            EventDClick(ListBox1, New EventArgs())
+        End If
+    End Sub
+    Private Sub Listbox2KeyDown(sender As Object, e As KeyEventArgs) Handles ListBox2.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            AtheleteDoubleClick(ListBox2, New EventArgs())
+        End If
+    End Sub
 End Class

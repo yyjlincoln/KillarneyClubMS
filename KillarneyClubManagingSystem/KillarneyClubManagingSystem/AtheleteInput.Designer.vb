@@ -31,6 +31,7 @@ Partial Class AtheleteInput
         Me.Button1 = New System.Windows.Forms.Button()
         Me.count = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -46,7 +47,7 @@ Partial Class AtheleteInput
         'confirm
         '
         Me.confirm.Location = New System.Drawing.Point(369, 431)
-        Me.confirm.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.confirm.Margin = New System.Windows.Forms.Padding(6)
         Me.confirm.Name = "confirm"
         Me.confirm.Size = New System.Drawing.Size(150, 42)
         Me.confirm.TabIndex = 2
@@ -56,7 +57,7 @@ Partial Class AtheleteInput
         'adda
         '
         Me.adda.Location = New System.Drawing.Point(386, 203)
-        Me.adda.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.adda.Margin = New System.Windows.Forms.Padding(6)
         Me.adda.Name = "adda"
         Me.adda.Size = New System.Drawing.Size(156, 42)
         Me.adda.TabIndex = 3
@@ -68,7 +69,7 @@ Partial Class AtheleteInput
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 24
         Me.ListBox1.Location = New System.Drawing.Point(48, 161)
-        Me.ListBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.ListBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(316, 172)
         Me.ListBox1.TabIndex = 4
@@ -76,7 +77,7 @@ Partial Class AtheleteInput
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(386, 257)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(368, 35)
         Me.TextBox1.TabIndex = 5
@@ -94,7 +95,7 @@ Partial Class AtheleteInput
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(554, 203)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(204, 42)
         Me.Button1.TabIndex = 7
@@ -120,11 +121,21 @@ Partial Class AtheleteInput
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Press [ENTER] to add or [SHIFT + BACK] to remove"
         '
-        'Form1
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(760, 424)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(76, 49)
+        Me.Button2.TabIndex = 10
+        Me.Button2.Text = "Save"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'AtheleteInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(890, 510)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.count)
         Me.Controls.Add(Me.Button1)
@@ -134,8 +145,8 @@ Partial Class AtheleteInput
         Me.Controls.Add(Me.adda)
         Me.Controls.Add(Me.confirm)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
-        Me.Name = "Form1"
+        Me.Margin = New System.Windows.Forms.Padding(6)
+        Me.Name = "AtheleteInput"
         Me.Text = "Welcome"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -151,4 +162,5 @@ Partial Class AtheleteInput
     Friend WithEvents Button1 As Button
     Friend WithEvents count As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Button2 As Button
 End Class

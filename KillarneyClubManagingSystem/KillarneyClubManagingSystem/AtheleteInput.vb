@@ -86,6 +86,7 @@ Public Class AtheleteInput
             If r(0) = "True" Then
                 If MsgBox("You exited without saving last time. Do you want to retrieve the file?", vbYesNo) = vbYes Then
                     r = DBOps.ReadSettings("Data:AutoSaved")
+                    ChangeFlag = True
                 Else
                     r = DBOps.ReadSettings("Data:AtheleteNames")
                 End If
@@ -147,6 +148,10 @@ Public Class AtheleteInput
         End If
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        UpdateNames(ListBox1.Items)
+        ChangeFlag = False
+    End Sub
 End Class
 
 

@@ -16,11 +16,13 @@
         Public _ReadIndex As Integer = -1
         Public Property NextData
             Get
+                _ReadIndex = _ReadIndex + 1
                 If _ReadIndex >= _Data.Count Then
                     Return Nothing
+                Else
+                    Return _Data(_ReadIndex)
                 End If
-                _ReadIndex = _ReadIndex + 1
-                Return _Data(_ReadIndex)
+
             End Get
             Set(value)
 
@@ -33,10 +35,70 @@
         End Function
 
         Public Function MapData()
-
+            Return New MappedData().Init(Me)
         End Function
 
     End Class
 
+    Class MappedData
+        Private Index As List(Of Object) = New List(Of Object)
+        Private Value As List(Of Object) = New List(Of Object)
+        Function Init(DataInstance As Data, Optional Sep As String = "|") ' IndexHook, ValueHook
+            For x As Integer = 0 To DataInstance.Data.Count - 1
+                Dim sp = Split(DataInstance.Data(x), Sep, 2)
+                If sp.Count >= 2 Then
+                    If Not Index.Contains(sp(0)) Then
+                        Index.Add(sp(0))
+                        Value.Add(sp(1))
+                    Else
+                        Debug.Print("Warning: Repeated Index")
+                    End If
+                Else
+                    Debug.Print("Warning: Ignored Data of " & DataInstance.Data(x))
+                End If
+            Next
+            Return Me
+        End Function
+        Function val(ind)
+            If Index.Contains(ind) Then
+                Debug.Print(Value(Index.IndexOf(ind)))
+                Return Value(Index.IndexOf(ind))
+            End If
+            Return Nothing
+        End Function
+
+        Function altval(ind, val)
+            If Index.Contains(ind) Then
+                Value(Index.IndexOf(ind)) = val
+                Return True
+            End If
+            Return False
+        End Function
+
+        Function newval(ind, val)
+            If Index.Contains(ind) Then
+                Return False
+            End If
+            Index.Add(ind)
+            Value.Add(val)
+            Return True
+        End Function
+        Function updval(ind, val)
+            If altval(ind, val) = False Then
+                Return newval(ind, val)
+            End If
+            'Automatically 
+        End Function
+        Function delval(ind, val)
+            If Index.Contains(ind) Then
+                Dim i = Index.IndexOf(ind)
+                Index.RemoveAt(i)
+                Value.RemoveAt(i)
+                Return True
+            End If
+            Return False
+        End Function
+
+    End Class
 
 End Module
