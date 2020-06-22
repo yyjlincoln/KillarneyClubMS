@@ -1,6 +1,6 @@
 ﻿Public Class Main
     Public UFIList As List(Of String) = New List(Of String)
-    Public UFIWindows As List(Of Management) = New List(Of Management)
+    Public UFIWindows As List(Of Master.UFIObjects) = New List(Of Master.UFIObjects)
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Reload()
     End Sub

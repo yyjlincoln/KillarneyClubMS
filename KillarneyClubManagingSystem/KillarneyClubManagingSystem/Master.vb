@@ -1,4 +1,49 @@
 ﻿Public Class Master
+
+    Public Interface UFIObjects
+        Function Reload() As Boolean
+        Property UFI As String
+
+    End Interface
+
+    Public Class DataClass
+        Private _Data As List(Of String)
+        Public Property Data As List(Of String)
+            Get
+                Return _Data
+            End Get
+            Set(value As List(Of String))
+                ' WriteOnly
+                Debug.Print("Warning: Setting an readonly object")
+            End Set
+        End Property
+
+        Public _ReadIndex As Integer = -1
+        Public Property NextData
+            Get
+                If _ReadIndex >= _Data.Count Then
+                    Return Nothing
+                End If
+                _ReadIndex = _ReadIndex + 1
+                Return _Data(_ReadIndex)
+            End Get
+            Set(value)
+
+            End Set
+        End Property
+
+
+        Public Function Init(Data)
+            Me._Data = Data
+            Return Me
+        End Function
+
+        Public Function MapData()
+
+        End Function
+    End Class
+
+
     Public FileName As String = "data.ini"
     Public ExitFlag As Boolean = False
     Public ChangeFlag As Boolean = False
@@ -118,7 +163,7 @@
         count.Text = "Total atheletes: " & ListBox1.Items.Count
     End Sub
 
-    Public Function ReadSettings(Block)
+    Public Function ReadSettings(Block, Optional AsDataClass = False) ' Otherwise it will be converted to a list
         Dim Rd As New System.IO.StreamReader(FileName)
         Dim l = Split(Rd.ReadToEnd(), System.Environment.NewLine)
         Dim r = New List(Of String)
@@ -139,6 +184,9 @@
             End If
         Next
         Rd.Close()
+        If AsDataClass Then
+            Return New DataClass().Init(r)
+        End If
         Return r
     End Function
 
@@ -214,4 +262,6 @@
     End Sub
 
 End Class
+
+
 

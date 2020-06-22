@@ -1,7 +1,8 @@
 ﻿Public Class Management
+    Implements Master.UFIObjects
     Public Mode As String
     Public Name As String
-    Public UFI As String ' Unique Form Identifier
+    Public Property UFI As String Implements Master.UFIObjects.UFI ' Unique Form Identifier
 
     Private Sub EventManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -37,7 +38,8 @@
     Public Function ReadData()
 
     End Function
-    Public Function Reload()
-
+    Public Function Reload() As Boolean Implements Master.UFIObjects.Reload
+        Return True
     End Function
+
 End Class
