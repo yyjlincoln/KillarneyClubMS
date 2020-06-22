@@ -34,7 +34,7 @@
 
         Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
         For x As Integer = 0 To toReload.Count - 1
-            diag.u("Now calculating window of UFI " & toReload(x).UFI)
+            diag.u("Now calculating window of UFI " & toReload(x).UFI, Title:="Chain Reload")
             diag.Update()
             toReload(x).Reload()
 
