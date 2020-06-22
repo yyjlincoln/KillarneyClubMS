@@ -22,9 +22,9 @@
             End If
         Next
         Rd.Close()
-        '        If AsDataClass Then
-        '       Return New DataClass().Init(r)
-        '      End If
+        If AsDataClass Then
+            Return New DBOverlay.Data().Init(r)
+        End If
         Return r
     End Function
 
