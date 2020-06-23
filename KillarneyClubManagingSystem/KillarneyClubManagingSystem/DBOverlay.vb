@@ -98,6 +98,10 @@
             End If
             Return False
         End Function
+        Function clear()
+            Index.Clear()
+            Value.Clear()
+        End Function
 
     End Class
 
