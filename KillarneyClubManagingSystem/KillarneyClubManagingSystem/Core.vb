@@ -75,11 +75,11 @@
         Return List
     End Function
 
-    Async Function SortMappedData(MD As DBOverlay.MappedData, Optional Inverse As Boolean = False) As Task
+    Function SortMappedData(MD As DBOverlay.MappedData, Optional Inverse As Boolean = False) As Task
         Dim I = Nothing
-        Await Sort(MD.Value.OfType(Of Double), Inverse, FinalIndexListCallback:=Function(OriginalList, IndexList)
-                                                                                    I = IndexList
-                                                                                End Function)
+        Sort(MD.Value.(Of Double), Inverse, FinalIndexListCallback:=Function(OriginalList, IndexList)
+                                                                        I = IndexList
+                                                                    End Function)
         MsgBox(I)
     End Function
 

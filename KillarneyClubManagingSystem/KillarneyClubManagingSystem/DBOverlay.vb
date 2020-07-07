@@ -35,7 +35,7 @@
         End Function
 
         Public Function MapData(Optional Sep As String = "|", Optional IndexHook As Func(Of String, Object) = Nothing, Optional ValueHook As Func(Of String, Object) = Nothing)
-            Return New MappedData().Init(Me, Sep:=Sep, IndexHook:=IndexHook, ValueHook:=ValueHook)
+            Return New MappedData().Init(Me, Sep:=Sep)
         End Function
 
     End Class
@@ -60,22 +60,13 @@
             End Set
         End Property
 
-        Function Init(DataInstance As Data, Optional Sep As String = "|", Optional IndexHook As Func(Of String, Object) = Nothing, Optional ValueHook As Func(Of String, Object) = Nothing) ' IndexHook, ValueHook
+        Function Init(DataInstance As Data, Optional Sep As String = "|") ' IndexHook, ValueHook
             For x As Integer = 0 To DataInstance.Data.Count - 1
                 Dim sp = Split(DataInstance.Data(x), Sep, 2)
                 If sp.Count >= 2 Then
                     If Not _Index.Contains(sp(0)) Then
-                        Dim _i = sp(0)
-                        Dim _v = sp(1)
-
-                        If IndexHook <> Nothing Then
-                            _i = IndexHook(sp(0))
-                        End If
-                        If ValueHook <> Nothing Then
-                            _v = ValueHook(sp(1))
-                        End If
-                        _Index.Add(_i)
-                        _Value.Add(_v)
+                        _Index.Add(sp(0))
+                        _Value.Add(sp(1))
                     Else
                         Debug.Print("Warning: Repeated Index")
                     End If
