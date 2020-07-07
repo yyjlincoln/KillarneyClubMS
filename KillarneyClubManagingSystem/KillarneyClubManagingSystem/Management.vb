@@ -55,7 +55,7 @@
         Me.Show()
         Me.Activate()
         ReadData()
-        Return True
+        Return Me
     End Function
 
     Public Function ReadData()
@@ -161,4 +161,5 @@
         End If
 
     End Sub
+
 End Class

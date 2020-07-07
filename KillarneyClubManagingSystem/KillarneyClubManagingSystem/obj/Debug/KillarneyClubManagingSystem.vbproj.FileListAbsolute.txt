@@ -18,7 +18,6 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbprojAssemblyReference.cache
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Main.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Resources.resources
-C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Scoreboard.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.GenerateResource.cache
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.vbproj.CoreCompileInputs.cache
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.exe
@@ -28,3 +27,5 @@ C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\Kil
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Management.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.Master.resources
 C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.AtheleteInput.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.FinalPlacing.resources
+C:\Users\Lincoln\coding\GitRepos\KillarneyClubMS\KillarneyClubManagingSystem\KillarneyClubManagingSystem\obj\Debug\KillarneyClubManagingSystem.PlacingWindowsByAtheletes.resources

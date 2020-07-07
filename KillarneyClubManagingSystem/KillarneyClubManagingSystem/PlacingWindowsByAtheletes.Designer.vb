@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Scoreboard
+Partial Class PlacingWindowsByAtheletes
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
+    'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,24 +14,23 @@ Partial Class Scoreboard
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
+    'Windows 窗体设计器所必需的
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+    '注意: 以下过程是 Windows 窗体设计器所必需的
+    '可以使用 Windows 窗体设计器修改它。  
+    '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
-        'Scoreboard
+        'PlacingWindowsByAtheletes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1126, 712)
-        Me.Margin = New System.Windows.Forms.Padding(6)
-        Me.Name = "Scoreboard"
-        Me.Text = "Scoreboard"
+        Me.ClientSize = New System.Drawing.Size(1143, 657)
+        Me.Name = "PlacingWindowsByAtheletes"
+        Me.Text = "PlacingWindows"
         Me.ResumeLayout(False)
 
     End Sub

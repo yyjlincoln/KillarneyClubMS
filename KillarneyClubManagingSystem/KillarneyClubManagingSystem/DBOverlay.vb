@@ -9,7 +9,7 @@
                 Return _Data
             End Get
             Set(value As List(Of String))
-                Debug.Print("Warning: Setting an readonly object")
+                Throw New ReadOnlyException("Index is a readonly value.")
             End Set
         End Property
 
@@ -34,22 +34,48 @@
             Return Me
         End Function
 
-        Public Function MapData()
-            Return New MappedData().Init(Me)
+        Public Function MapData(Optional Sep As String = "|", Optional IndexHook As Func(Of String, Object) = Nothing, Optional ValueHook As Func(Of String, Object) = Nothing)
+            Return New MappedData().Init(Me, Sep:=Sep, IndexHook:=IndexHook, ValueHook:=ValueHook)
         End Function
 
     End Class
 
     Class MappedData
-        Private Index As List(Of Object) = New List(Of Object)
-        Private Value As List(Of Object) = New List(Of Object)
-        Function Init(DataInstance As Data, Optional Sep As String = "|") ' IndexHook, ValueHook
+        Private _Index As List(Of Object) = New List(Of Object)
+        Private _Value As List(Of Object) = New List(Of Object)
+        Public Property Index As List(Of Object)
+            Get
+                Return _Index
+            End Get
+            Set(value As List(Of Object))
+                Throw New ReadOnlyException()
+            End Set
+        End Property
+        Public Property Value As List(Of Object)
+            Get
+                Return _Value
+            End Get
+            Set(value As List(Of Object))
+                Throw New ReadOnlyException()
+            End Set
+        End Property
+
+        Function Init(DataInstance As Data, Optional Sep As String = "|", Optional IndexHook As Func(Of String, Object) = Nothing, Optional ValueHook As Func(Of String, Object) = Nothing) ' IndexHook, ValueHook
             For x As Integer = 0 To DataInstance.Data.Count - 1
                 Dim sp = Split(DataInstance.Data(x), Sep, 2)
                 If sp.Count >= 2 Then
-                    If Not Index.Contains(sp(0)) Then
-                        Index.Add(sp(0))
-                        Value.Add(sp(1))
+                    If Not _Index.Contains(sp(0)) Then
+                        Dim _i = sp(0)
+                        Dim _v = sp(1)
+
+                        If IndexHook <> Nothing Then
+                            _i = IndexHook(sp(0))
+                        End If
+                        If ValueHook <> Nothing Then
+                            _v = ValueHook(sp(1))
+                        End If
+                        _Index.Add(_i)
+                        _Value.Add(_v)
                     Else
                         Debug.Print("Warning: Repeated Index")
                     End If
@@ -60,27 +86,27 @@
             Return Me
         End Function
         Function val(ind)
-            If Index.Contains(ind) Then
-                Debug.Print(Value(Index.IndexOf(ind)))
-                Return Value(Index.IndexOf(ind))
+            If _Index.Contains(ind) Then
+                Debug.Print(_Value(_Index.IndexOf(ind)))
+                Return _Value(_Index.IndexOf(ind))
             End If
             Return Nothing
         End Function
 
         Function altval(ind, val)
-            If Index.Contains(ind) Then
-                Value(Index.IndexOf(ind)) = val
+            If _Index.Contains(ind) Then
+                _Value(_Index.IndexOf(ind)) = val
                 Return True
             End If
             Return False
         End Function
 
         Function newval(ind, val)
-            If Index.Contains(ind) Then
+            If _Index.Contains(ind) Then
                 Return False
             End If
-            Index.Add(ind)
-            Value.Add(val)
+            _Index.Add(ind)
+            _Value.Add(val)
             Return True
         End Function
         Function updval(ind, val)
@@ -90,17 +116,17 @@
             'Automatically 
         End Function
         Function delval(ind, val)
-            If Index.Contains(ind) Then
-                Dim i = Index.IndexOf(ind)
-                Index.RemoveAt(i)
-                Value.RemoveAt(i)
+            If _Index.Contains(ind) Then
+                Dim i = _Index.IndexOf(ind)
+                _Index.RemoveAt(i)
+                _Value.RemoveAt(i)
                 Return True
             End If
             Return False
         End Function
         Function clear()
-            Index.Clear()
-            Value.Clear()
+            _Index.Clear()
+            _Value.Clear()
         End Function
 
     End Class

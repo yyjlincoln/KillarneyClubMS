@@ -1,5 +1,5 @@
 ﻿Module Core
-    Function _Sort(List As List(Of Double), Optional Inverse As Boolean = False, Optional EachIndexCallback As Action(Of List(Of Double), Integer, Integer) = Nothing, Optional FinalIndexListCallback As Action(Of List(Of Double), List(Of Integer)) = Nothing)
+    Function Sort(List As List(Of Double), Optional Inverse As Boolean = False, Optional EachIndexCallback As Action(Of List(Of Double), Integer, Integer) = Nothing, Optional FinalIndexListCallback As Action(Of List(Of Double), List(Of Integer)) = Nothing)
         ' Callbacks explained.
         ' 
         ' EachIndexCallback(List(Of Double) ORIGINAL_LIST, Integer RANK, Integer INDEX)
@@ -75,13 +75,21 @@
         Return List
     End Function
 
+    Async Function SortMappedData(MD As DBOverlay.MappedData, Optional Inverse As Boolean = False) As Task
+        Dim I = Nothing
+        Await Sort(MD.Value.OfType(Of Double), Inverse, FinalIndexListCallback:=Function(OriginalList, IndexList)
+                                                                                    I = IndexList
+                                                                                End Function)
+        MsgBox(I)
+    End Function
+
     Function TestSorting()
         Dim a = New List(Of Double) From {13, 234, -12, 124, 32, 23, 23489, -123, 3243, -23534, 5345}
-        _Sort(a, False, Function(OriginalList As List(Of Double), rank As Integer, var As Integer)
-                            Debug.Print("Sort: " & var)
-                        End Function, Function(OriginalList As List(Of Double), FinalIndex As List(Of Integer))
-                                          MsgBox("Sort!!")
-                                      End Function)
+        Sort(a, False, Function(OriginalList As List(Of Double), rank As Integer, var As Integer)
+                           Debug.Print("Sort: " & var)
+                       End Function, Function(OriginalList As List(Of Double), FinalIndex As List(Of Integer))
+                                         MsgBox("Sort!!")
+                                     End Function)
     End Function
 
 End Module

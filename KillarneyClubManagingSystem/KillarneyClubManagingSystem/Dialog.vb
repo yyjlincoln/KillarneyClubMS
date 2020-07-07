@@ -16,6 +16,7 @@ Public Class Dialog
                                            UFIMod.DeregisterUFI(Me.UFI)
                                            Return 0
                                        End Function
+        Me.Show()
         Return Me
     End Function
     Public Function u(message, Optional title = "Please wait...")

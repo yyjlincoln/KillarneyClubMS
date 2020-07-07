@@ -82,6 +82,12 @@
     <Compile Include="Dialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FinalPlacing.Designer.vb">
+      <DependentUpon>FinalPlacing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FinalPlacing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Management.Designer.vb">
       <DependentUpon>Management.vb</DependentUpon>
     </Compile>
@@ -122,10 +128,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Scoreboard.Designer.vb">
-      <DependentUpon>Scoreboard.vb</DependentUpon>
+    <Compile Include="PlacingWindowsByAtheletes.Designer.vb">
+      <DependentUpon>PlacingWindowsByAtheletes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Scoreboard.vb">
+    <Compile Include="PlacingWindowsByAtheletes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UFIMod.vb" />
@@ -133,6 +139,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Dialog.resx">
       <DependentUpon>Dialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalPlacing.resx">
+      <DependentUpon>FinalPlacing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management.resx">
       <DependentUpon>Management.vb</DependentUpon>
@@ -152,8 +161,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scoreboard.resx">
-      <DependentUpon>Scoreboard.vb</DependentUpon>
+    <EmbeddedResource Include="PlacingWindowsByAtheletes.resx">
+      <DependentUpon>PlacingWindowsByAtheletes.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

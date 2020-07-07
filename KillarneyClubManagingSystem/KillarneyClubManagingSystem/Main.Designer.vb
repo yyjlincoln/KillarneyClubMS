@@ -29,6 +29,7 @@ Partial Class Main
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -87,18 +88,28 @@ Partial Class Main
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(938, 733)
+        Me.Button1.Location = New System.Drawing.Point(938, 759)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(130, 50)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "Refresh"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(540, 759)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(371, 49)
+        Me.Button2.TabIndex = 7
+        Me.Button2.Text = "Open Final Placing Window"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1097, 807)
+        Me.ClientSize = New System.Drawing.Size(1097, 850)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
@@ -121,4 +132,5 @@ Partial Class Main
     Friend WithEvents Label4 As Label
     Friend WithEvents ListBox2 As ListBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class
