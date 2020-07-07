@@ -34,92 +34,58 @@
             Return Me
         End Function
 
-        Public Function MapData(Optional Sep As String = "|", Optional IndexHook As Func(Of String, Object) = Nothing, Optional ValueHook As Func(Of String, Object) = Nothing)
+        Public Function MapData(Optional Sep As String = "|")
             Return New MappedData().Init(Me, Sep:=Sep)
         End Function
 
     End Class
 
-    Class MappedData
-        Private _Index As List(Of Object) = New List(Of Object)
-        Private _Value As List(Of Object) = New List(Of Object)
-        Public Property Index As List(Of Object)
+    Public Class MappedData
+
+        Private _Dict As Dictionary(Of String, String) = New Dictionary(Of String, String)
+        Public Property Dict As Dictionary(Of String, String)
             Get
-                Return _Index
+                Return _Dict
             End Get
-            Set(value As List(Of Object))
+            Set(value As Dictionary(Of String, String))
                 Throw New ReadOnlyException()
             End Set
-        End Property
-        Public Property Value As List(Of Object)
-            Get
-                Return _Value
-            End Get
-            Set(value As List(Of Object))
-                Throw New ReadOnlyException()
-            End Set
+
         End Property
 
-        Function Init(DataInstance As Data, Optional Sep As String = "|") ' IndexHook, ValueHook
+        Public Function Init(DataInstance As Data, Optional Sep As String = "|")
             For x As Integer = 0 To DataInstance.Data.Count - 1
                 Dim sp = Split(DataInstance.Data(x), Sep, 2)
                 If sp.Count >= 2 Then
-                    If Not _Index.Contains(sp(0)) Then
-                        _Index.Add(sp(0))
-                        _Value.Add(sp(1))
+                    If _Dict.ContainsKey(sp(0)) Then
+                        _Dict(sp(0)) = sp(1)
                     Else
-                        Debug.Print("Warning: Repeated Index")
+                        _Dict.Add(sp(0), sp(1))
                     End If
-                Else
-                    Debug.Print("Warning: Ignored Data of " & DataInstance.Data(x))
+
                 End If
+
             Next
             Return Me
         End Function
-        Function val(ind)
-            If _Index.Contains(ind) Then
-                Debug.Print(_Value(_Index.IndexOf(ind)))
-                Return _Value(_Index.IndexOf(ind))
+
+        Public Function val(key)
+            If _Dict.ContainsKey(key) Then
+                Return _Dict(key)
+            Else
+                Return Nothing
             End If
-            Return Nothing
         End Function
 
-        Function altval(ind, val)
-            If _Index.Contains(ind) Then
-                _Value(_Index.IndexOf(ind)) = val
-                Return True
+        Public Function updval(key, value)
+            If _Dict.ContainsKey(key) Then
+                Dict(key) = value
+            Else
+                Dict.Add(key, value)
             End If
-            Return False
-        End Function
-
-        Function newval(ind, val)
-            If _Index.Contains(ind) Then
-                Return False
-            End If
-            _Index.Add(ind)
-            _Value.Add(val)
-            Return True
-        End Function
-        Function updval(ind, val)
-            If altval(ind, val) = False Then
-                Return newval(ind, val)
-            End If
-            'Automatically 
-        End Function
-        Function delval(ind, val)
-            If _Index.Contains(ind) Then
-                Dim i = _Index.IndexOf(ind)
-                _Index.RemoveAt(i)
-                _Value.RemoveAt(i)
-                Return True
-            End If
-            Return False
-        End Function
-        Function clear()
-            _Index.Clear()
-            _Value.Clear()
         End Function
 
     End Class
+
 
 End Module

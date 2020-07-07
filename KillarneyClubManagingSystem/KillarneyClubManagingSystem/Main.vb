@@ -10,9 +10,11 @@
         '     Next
         '        Core.TestSorting()
         '        Dim test = New PlacingWindowsByAtheletes().Init("AtheN", "EvName")
-        Dim a = New Data().Init(New List(Of String) From {"Test1|0.1", "t2|0.3", "t3|3", "t4|-1", "5|0", "9|0", "8|0", "-1|0", "3|2", "-5|4"})
-        a = a.MapData()
+
+        ' Test sorting
+        Dim a = New Data().Init(New List(Of String) From {"Test1|0.1", "t2|0.3", "t3|3", "t4|-1", "5|0", "9|0", "8|0", "-1|0", "3|2", "-5|4"}).MapData()
         SortMappedData(a)
+
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True

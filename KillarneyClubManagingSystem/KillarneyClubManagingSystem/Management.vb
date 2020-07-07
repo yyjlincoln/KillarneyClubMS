@@ -67,10 +67,11 @@
 
         ElseIf Me.Mode = "Event" Then
             AtheleteList = DBOps.ReadSettings("Data:AtheleteNames")
+            'EventResults = New Dictionary(Of String, String)
             EventResults = New DBOverlay.MappedData()
             For x As Integer = 0 To AtheleteList.Count - 1
                 Dim IndividualResult = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData().val(Me.Name)
-                EventResults.newval(AtheleteList(x), IndividualResult)
+                EventResults.updval(AtheleteList(x), IndividualResult)
             Next
             UpdateForm()
         End If
@@ -106,10 +107,6 @@
                     ListBox1.Items.Add(AtheleteList(x) & " - Click to add result")
                 End If
             Next
-
-
-
-
 
             ListBox1.SelectedIndex = i
             ListBoxUpdateFlag = False

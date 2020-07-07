@@ -25,7 +25,6 @@
 
         ' Dim OriginalList As List(Of Double) = List      CAN NOT DO THIS BECAUSE THIS LIST IS A POINTER. AS LIST CHANGES, ORIGINAL LIST CHANGES.
         Dim OriginalList = New List(Of Double)(List) ' This way, a new list is copied and is not referenced to.
-
         Dim ListLength = List.Count
         Dim indexList = New List(Of Integer)
         ' Visual Basic does not support range() or 0 to something, so had to use a loop
@@ -75,21 +74,31 @@
         Return List
     End Function
 
-    Function SortMappedData(MD As DBOverlay.MappedData, Optional Inverse As Boolean = False) As Task
-        Dim I = Nothing
-        Sort(MD.Value.(Of Double), Inverse, FinalIndexListCallback:=Function(OriginalList, IndexList)
-                                                                        I = IndexList
-                                                                    End Function)
-        MsgBox(I)
+    Function SortMappedData(Mapped As MappedData)
+        ' Convert ValuesCollection to List Of Doubles
+        Dim Vals As List(Of Double) = New List(Of Double)
+        Dim Raw = Mapped.Dict.Values
+        For x As Integer = 0 To Raw.Count - 1
+            Vals.Add(CType(Raw(x), Double))
+        Next
+
+        Dim OrderedKeys As List(Of String) = New List(Of String)
+        Sort(Vals, EachIndexCallback:=Function(Orig, Rank, El)
+                                          Debug.Print("Each!!" & Rank & " " & El)
+                                          OrderedKeys.Add(ReturnIndex(Mapped.Dict, El))
+                                      End Function)
+        'MsgBox(i)
+    End Function
+    Function ReturnIndex(Dict As Dictionary(Of String, String), ct As Integer)
+        Dim counter = 0
+        For Each x In Dict.Keys
+            If counter = ct Then
+                Return x
+            End If
+            counter = counter + 1
+        Next
+        Return Nothing
     End Function
 
-    Function TestSorting()
-        Dim a = New List(Of Double) From {13, 234, -12, 124, 32, 23, 23489, -123, 3243, -23534, 5345}
-        Sort(a, False, Function(OriginalList As List(Of Double), rank As Integer, var As Integer)
-                           Debug.Print("Sort: " & var)
-                       End Function, Function(OriginalList As List(Of Double), FinalIndex As List(Of Integer))
-                                         MsgBox("Sort!!")
-                                     End Function)
-    End Function
 
 End Module
