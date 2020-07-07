@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core.vb" />
     <Compile Include="DBOps.vb" />
     <Compile Include="DBOverlay.vb" />
     <Compile Include="Dialog.Designer.vb">

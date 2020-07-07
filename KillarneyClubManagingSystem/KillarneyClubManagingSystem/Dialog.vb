@@ -22,4 +22,5 @@ Public Class Dialog
         Label1.Text = message
         Me.Text = title
     End Function
+
 End Class

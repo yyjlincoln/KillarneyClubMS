@@ -1,6 +1,14 @@
 ﻿Public Class Main
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Reload()
+        Dev()
+    End Sub
+    Private Sub Dev()
+        '        For x As Integer = 0 To ListBox2.Items.Count - 1
+        '       Dim Mgn = New Management()
+        '      Mgn.init("Athelete", ListBox2.Items(x))
+        '     Next
+        Core.TestSorting()
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
@@ -30,12 +38,13 @@
         Dim diag = New Dialog().Init("Main::ChainReloadDialog", "Updating and recalculating everything...")
         diag.show()
         diag.activate()
+        diag.update()
         Me.Reload()
 
         Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
         For x As Integer = 0 To toReload.Count - 1
-            diag.u("Now calculating window of UFI " & toReload(x).UFI, Title:="Chain Reload")
-            diag.Update()
+            'diag.u("Now calculating window of UFI " & toReload(x).UFI, Title:="Chain Reload")
+            'diag.Update()
             toReload(x).Reload()
 
         Next

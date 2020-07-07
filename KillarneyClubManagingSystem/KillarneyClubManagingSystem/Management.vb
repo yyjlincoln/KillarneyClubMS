@@ -7,14 +7,31 @@
     Public AtheleteList
     Public EventResults
     Private ListBoxUpdateFlag
+    Public ReloadFlag = False
 
     Public Property UFI As String Implements UFIMod.UFIBase.UFI ' Unique Form Identifier
     Public Function Reload() Implements UFIMod.UFIBase.Reload
+        ReloadFlag = True
+    End Function
+
+    Public Function ActualReload()
+        Me.ReloadFlag = False
         Save()
         ReadData()
     End Function
 
     Public Sub Save()
+        If Me.Mode = "Athelete" Then
+            Dim _data = New List(Of String)
+
+            For x As Integer = 0 To Events.Data.count - 1
+                If AtheleteData.val(Events.Data(x)) <> Nothing And AtheleteData.val(Events.Data(x)) <> "" Then
+                    _data.Add(Events.Data(x) & "|" & AtheleteData.val(Events.Data(x)))
+                End If
+            Next
+
+            DBOps.WriteSettings("Data:Athelete:" & Me.Name, _data)
+        End If
         UpdateForm()
     End Sub
 
@@ -121,15 +138,27 @@
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        If Me.Mode = "Athelete" Then
-            AtheleteData.updval(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
-        ElseIf Me.Mode = "Event" Then
-            EventResults.updval(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
+        If ListBox1.SelectedIndex <> -1 Then
+
+
+            If Me.Mode = "Athelete" Then
+                AtheleteData.updval(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
+            ElseIf Me.Mode = "Event" Then
+                EventResults.updval(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
+            End If
+
         End If
         'UpdateForm()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Main.ChainReload()
+    End Sub
+
+    Private Sub Management_Load(sender As Object, e As EventArgs) Handles MyBase.Activated
+        If Me.ReloadFlag Then
+            Me.ActualReload()
+        End If
+
     End Sub
 End Class
