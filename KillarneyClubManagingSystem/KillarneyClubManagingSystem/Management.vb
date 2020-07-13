@@ -1,5 +1,11 @@
 ﻿Public Class Management
     Implements UFIMod.UFIBase
+
+
+    ' BUG
+    ' ChainReload -> Actual Reload won't update data
+
+
     Public Mode As String
     Public Name As String
     Public AtheleteData
@@ -18,6 +24,7 @@
         Me.ReloadFlag = False
         Save()
         ReadData()
+
     End Function
 
     Public Sub Save()
@@ -189,5 +196,4 @@
         End If
 
     End Sub
-
 End Class
