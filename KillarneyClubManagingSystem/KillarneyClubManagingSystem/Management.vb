@@ -31,6 +31,22 @@
             Next
 
             DBOps.WriteSettings("Data:Athelete:" & Me.Name, _data)
+        ElseIf Me.Mode = "Event" Then
+            For x As Integer = 0 To AtheleteList.Count - 1
+                If EventResults.val(AtheleteList(x)) <> Nothing Then
+                    ' Create a new MappedData
+                    Dim _data As MappedData
+                    ' Read original data
+                    _data = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData()
+                    ' Now update the data with the cached data
+                    ' This is because that the program DOES NOT interact directly with the original
+                    ' data. Instead a cached data that only include information about a specific
+                    ' event is used, so now this needs to be converted & change the original data
+                    ' so that it can be flatten and written
+                    _data.updval(Me.Name, EventResults.val(AtheleteList(x)))
+                    DBOps.WriteSettings("Data:Athelete:" & AtheleteList(x), _data.Flatten().Data)
+                End If
+            Next
         End If
         UpdateForm()
     End Sub
@@ -49,6 +65,7 @@
         Me.Text = Me.UFI
         Label1.Text = "Managing " & Mode & ": " & eName
         AddHandler Me.FormClosing, Function()
+                                       Save()
                                        UFIMod.DeregisterUFI(Me.UFI)
                                        Main.ChainReload()
                                    End Function
@@ -77,6 +94,14 @@
         End If
     End Function
 
+    Public Function RenderSingleEntry(Key, Value)
+        If Value <> Nothing Then
+            Return Key & " - Result: " & Value
+        Else
+            Return Key & " - Click to add result"
+        End If
+    End Function
+
     Public Function UpdateForm()
         If Me.Mode = "Athelete" Then
             Events._ReadIndex = -1
@@ -85,12 +110,13 @@
             ListBoxUpdateFlag = True
             ListBox1.Items.Clear()
             Do While e IsNot Nothing
-                If AtheleteData.val(e) IsNot Nothing Then
-                    ListBox1.Items.Add(e & " - Result: " & AtheleteData.val(e))
-                    '                    MsgBox("For event " & e & ", athelete " & Name & "got result of " & AtheleteData.val(e))
-                Else
-                    ListBox1.Items.Add(e & " - Click to add result")
-                End If
+                'If AtheleteData.val(e) IsNot Nothing Then
+                '    ListBox1.Items.Add(e & " - Result: " & AtheleteData.val(e))
+                '    '                    MsgBox("For event " & e & ", athelete " & Name & "got result of " & AtheleteData.val(e))
+                'Else
+                '    ListBox1.Items.Add(e & " - Click to add result")
+                'End If
+                ListBox1.Items.Add(RenderSingleEntry(e, AtheleteData.val(e)))
                 e = Events.NextData
             Loop
             ListBox1.SelectedIndex = i
@@ -101,11 +127,12 @@
             Dim i = ListBox1.SelectedIndex
             ListBox1.Items.Clear()
             For x As Integer = 0 To AtheleteList.count - 1
-                If EventResults.val(AtheleteList(x)) IsNot Nothing Then
-                    ListBox1.Items.Add(AtheleteList(x) & " - Result: " & EventResults.val(AtheleteList(x)))
-                Else
-                    ListBox1.Items.Add(AtheleteList(x) & " - Click to add result")
-                End If
+                'If EventResults.val(AtheleteList(x)) IsNot Nothing Then
+                '    ListBox1.Items.Add(AtheleteList(x) & " - Result: " & EventResults.val(AtheleteList(x)))
+                'Else
+                '    ListBox1.Items.Add(AtheleteList(x) & " - Click to add result")
+                'End If
+                ListBox1.Items.Add(RenderSingleEntry(AtheleteList(x), EventResults.val(AtheleteList(x))))
             Next
 
             ListBox1.SelectedIndex = i
@@ -115,9 +142,11 @@
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         If ListBox1.SelectedIndex <> -1 And Not ListBoxUpdateFlag Then
-            Save()
+            'Save()
+            ' UpdateForm()
+            UpdateText()
         End If
-        UpdateText()
+
     End Sub
 
     Public Sub UpdateText()
@@ -140,8 +169,10 @@
 
             If Me.Mode = "Athelete" Then
                 AtheleteData.updval(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
+                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
             ElseIf Me.Mode = "Event" Then
                 EventResults.updval(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
+                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
             End If
 
         End If

@@ -52,8 +52,10 @@
             End Set
 
         End Property
+        Private _Sep = "|"
 
         Public Function Init(DataInstance As Data, Optional Sep As String = "|")
+            _Sep = Sep
             For x As Integer = 0 To DataInstance.Data.Count - 1
                 Dim sp = Split(DataInstance.Data(x), Sep, 2)
                 If sp.Count >= 2 Then
@@ -83,6 +85,14 @@
             Else
                 Dict.Add(key, value)
             End If
+        End Function
+        Public Function Flatten()
+            Dim _Data As List(Of String) = New List(Of String)
+            Dim Keys = _Dict.Keys
+            For index As Integer = 0 To Keys.Count - 1
+                _Data.Add(Keys(index) + _Sep + _Dict(Keys(index)))
+            Next
+            Return New Data().Init(_Data)
         End Function
 
     End Class
