@@ -74,7 +74,15 @@
         Return List
     End Function
 
-    Function SortMappedData(Mapped As MappedData)
+    Function SortMappedData(Mapped As MappedData, Optional Inverse As Boolean = False)
+        Try
+            Return _SortMappedData(Mapped:=Mapped, Inverse:=Inverse)
+        Catch ex As Exception
+            Logging.Critical("Core.SortMappedData()", "Failed to sort MappedData. " & ex.Message)
+        End Try
+
+    End Function
+    Function _SortMappedData(Mapped As MappedData, Optional Inverse As Boolean = False)
         ' Convert ValuesCollection to List Of Doubles
         Dim Vals As List(Of Double) = New List(Of Double)
         Dim Raw = Mapped.Dict.Values
@@ -86,7 +94,8 @@
         Sort(Vals, EachIndexCallback:=Function(Orig, Rank, El)
                                           Debug.Print("Each!!" & Rank & " " & El)
                                           OrderedKeys.Add(ReturnIndex(Mapped.Dict, El))
-                                      End Function)
+                                      End Function, Inverse:=Inverse)
+        Return OrderedKeys
         'MsgBox(i)
     End Function
     Function ReturnIndex(Dict As Dictionary(Of String, String), ct As Integer)
@@ -100,5 +109,59 @@
         Return Nothing
     End Function
 
+    Function GetAtheleteDataByAtheleteName(AtheleteName As String, Optional AsMappedData As Boolean = True)
+        If AsMappedData Then
+            Return DBOps.ReadSettings("Data:Athelete:" & AtheleteName, True).MapData()
+        Else
+            Return DBOps.ReadSettings("Data:Athelete:" & AtheleteName, False)
+        End If
+    End Function
+
+    Function GetAllEvents(Optional AsDataClass As Boolean = False)
+        Return DBOps.ReadSettings("General:Events", AsDataClass)
+    End Function
+    Function GetAllAtheletes(Optional AsDataClass As Boolean = False)
+        Return DBOps.ReadSettings("Data:AtheleteNames", AsDataClass)
+    End Function
+
+    Function GetEventResultsByEventName(EventName)
+        Dim AtheleteList = GetAllAtheletes()
+        Dim EventResults = New DBOverlay.MappedData()
+        For x As Integer = 0 To AtheleteList.Count - 1
+            Dim IndividualResult = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData().val(EventName)
+            EventResults.updval(AtheleteList(x), IndividualResult)
+        Next
+        Return EventResults
+    End Function
+
+End Module
+
+Module Calculator
+
+    Private Methods
+    Sub New()
+        Methods = DBOps.ReadSettings("General:SortingMethods", True).MapData()
+    End Sub
+
+    Function SortEvents(EventName)
+        Dim EventData = Core.GetEventResultsByEventName(EventName)
+        Return Core.SortMappedData(EventData, GetSortingMethod(EventName))
+    End Function
+
+    Function GetSortingMethod(EventName)
+        Dim _m = Methods.val(EventName)
+        If _m = Nothing Then
+            Logging.Critical("Core.GetSortingMethod()", "The system can not find a corresponding method for event " & EventName)
+            Return Nothing
+        End If
+        If _m = "smallest" Then
+            Return False
+        ElseIf _m = "largest" Then
+            Return True
+        Else
+            Logging.Critical("Core.GetSortingMethod()", "Database corroption found: For event " & EventName & ", sorting method " & _m & " is invalid.")
+            Return Nothing
+        End If
+    End Function
 
 End Module

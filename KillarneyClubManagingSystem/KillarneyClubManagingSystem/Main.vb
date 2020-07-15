@@ -14,12 +14,16 @@
         ' Test sorting
         Dim a = New Data().Init(New List(Of String) From {"Test1|0.1", "t2|0.3", "t3|3", "t4|-1", "5|0", "9|0", "8|0", "-1|0", "3|2", "-5|4"}).MapData()
         SortMappedData(a)
-
+        Calculator.GetSortingMethod("1500m")
+        Dim d = Core.GetEventResultsByEventName("1500m")
+        Dim r = Calculator.SortEvents("1500m")
+        For x As Integer = 0 To r.count - 1
+            Debug.Print(r(x) & " : " & d.val(r(x)))
+        Next
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
         If MsgBox("Exit Program?", vbYesNo) = vbYes Then
-            AtheleteInput.Close() ' Ends the whole program
             End
         End If
     End Sub
@@ -41,11 +45,14 @@
         Return 0
     End Function
     Public Function ChainReload()
-        Dim diag = New Dialog().Init("Main::ChainReloadDialog", "Updating and recalculating everything...")
-        diag.show()
-        diag.activate()
-        diag.update()
-        Me.Reload()
+        'Dim diag = New Dialog().Init("Main::ChainReloadDialog", "Updating and recalculating everything...")
+        'diag.show()
+        'diag.activate()
+        'diag.update()
+
+        ' Not reloaded due to performance issues
+        ' Also, athelete list should not change
+        '        Me.Reload()
 
         Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
         For x As Integer = 0 To toReload.Count - 1
@@ -58,7 +65,7 @@
         For x As Integer = 0 To toReloadPlacingWindows.Count - 1
             toReloadPlacingWindows(x).Reload()
         Next
-        diag.close()
+        'diag.close()
     End Function
     Private Sub EventDClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         If ListBox1.SelectedIndex <> -1 Then
@@ -94,5 +101,23 @@
         If MsgBox("Execute development script?", vbYesNo) = vbYes Then
             Dev()
         End If
+    End Sub
+
+    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim AtheInput = New AtheleteInput()
+        AtheInput.EndFlag = False
+        AddHandler AtheInput.FormClosed, Function()
+                                             Me.Reload()
+                                             Me.ChainReload()
+                                         End Function
+        AtheInput.Show()
     End Sub
 End Class

@@ -88,6 +88,7 @@
     <Compile Include="FinalPlacing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logging.vb" />
     <Compile Include="Management.Designer.vb">
       <DependentUpon>Management.vb</DependentUpon>
     </Compile>

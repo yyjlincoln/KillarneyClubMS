@@ -1,11 +1,6 @@
 ﻿Public Class Management
     Implements UFIMod.UFIBase
 
-
-    ' BUG
-    ' ChainReload -> Actual Reload won't update data
-
-
     Public Mode As String
     Public Name As String
     Public AtheleteData
@@ -14,26 +9,41 @@
     Public EventResults
     Private ListBoxUpdateFlag
     Public ReloadFlag = False
+    Private ChangeFlag = False
 
     Public Property UFI As String Implements UFIMod.UFIBase.UFI ' Unique Form Identifier
     Public Function Reload() Implements UFIMod.UFIBase.Reload
         ReloadFlag = True
+        PutStatus("Data changed from other windows. Reload is needed.")
+    End Function
+
+    Public Function PutStatus(Status As String)
+        Label2.Text = "Status: " & Status
     End Function
 
     Public Function ActualReload()
+        PutStatus("Reloading...")
         Me.ReloadFlag = False
-        Save()
+        ' Save()
         ReadData()
 
     End Function
 
+    Public Sub LostFocusToSave(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        If ChangeFlag = True Then
+            Main.ChainReload()
+        End If
+        Save()
+    End Sub
+
     Public Sub Save()
+        ChangeFlag = False
         If Me.Mode = "Athelete" Then
             Dim _data = New List(Of String)
 
-            For x As Integer = 0 To Events.Data.count - 1
-                If AtheleteData.val(Events.Data(x)) <> Nothing And AtheleteData.val(Events.Data(x)) <> "" Then
-                    _data.Add(Events.Data(x) & "|" & AtheleteData.val(Events.Data(x)))
+            For x As Integer = 0 To Events.count - 1
+                If AtheleteData.val(Events(x)) <> Nothing And AtheleteData.val(Events(x)) <> "" Then
+                    _data.Add(Events(x) & "|" & AtheleteData.val(Events(x)))
                 End If
             Next
 
@@ -56,6 +66,7 @@
             Next
         End If
         UpdateForm()
+        PutStatus("Saved.")
     End Sub
 
     Public Function init(Mode, eName)
@@ -83,22 +94,20 @@
     End Function
 
     Public Function ReadData()
+        PutStatus("Reading data...")
         If Me.Mode = "Athelete" Then
-            AtheleteData = DBOps.ReadSettings("Data:Athelete:" & Name, True).MapData()
-            Events = DBOps.ReadSettings("General:Events", True)
-            ' This initialized a blank dict. Then it can not be updated.
+            ' TODO: Pack those into functions and put them in core so it can also be
+            ' used by the sorting algorithm
+            AtheleteData = Core.GetAtheleteDataByAtheleteName(Me.Name)
+            Events = Core.GetAllEvents()
             UpdateForm()
 
         ElseIf Me.Mode = "Event" Then
-            AtheleteList = DBOps.ReadSettings("Data:AtheleteNames")
-            'EventResults = New Dictionary(Of String, String)
-            EventResults = New DBOverlay.MappedData()
-            For x As Integer = 0 To AtheleteList.Count - 1
-                Dim IndividualResult = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData().val(Me.Name)
-                EventResults.updval(AtheleteList(x), IndividualResult)
-            Next
+            AtheleteList = Core.GetAllAtheletes()
+            EventResults = Core.GetEventResultsByEventName(Me.Name)
             UpdateForm()
         End If
+        PutStatus("Ready")
     End Function
 
     Public Function RenderSingleEntry(Key, Value)
@@ -111,21 +120,12 @@
 
     Public Function UpdateForm()
         If Me.Mode = "Athelete" Then
-            Events._ReadIndex = -1
-            Dim e = Events.NextData
             Dim i = ListBox1.SelectedIndex
             ListBoxUpdateFlag = True
             ListBox1.Items.Clear()
-            Do While e IsNot Nothing
-                'If AtheleteData.val(e) IsNot Nothing Then
-                '    ListBox1.Items.Add(e & " - Result: " & AtheleteData.val(e))
-                '    '                    MsgBox("For event " & e & ", athelete " & Name & "got result of " & AtheleteData.val(e))
-                'Else
-                '    ListBox1.Items.Add(e & " - Click to add result")
-                'End If
-                ListBox1.Items.Add(RenderSingleEntry(e, AtheleteData.val(e)))
-                e = Events.NextData
-            Loop
+            For x As Integer = 0 To Events.Count - 1
+                ListBox1.Items.Add(RenderSingleEntry(Events(x), AtheleteData.val(Events(x))))
+            Next
             ListBox1.SelectedIndex = i
             ListBoxUpdateFlag = False
 
@@ -134,11 +134,6 @@
             Dim i = ListBox1.SelectedIndex
             ListBox1.Items.Clear()
             For x As Integer = 0 To AtheleteList.count - 1
-                'If EventResults.val(AtheleteList(x)) IsNot Nothing Then
-                '    ListBox1.Items.Add(AtheleteList(x) & " - Result: " & EventResults.val(AtheleteList(x)))
-                'Else
-                '    ListBox1.Items.Add(AtheleteList(x) & " - Click to add result")
-                'End If
                 ListBox1.Items.Add(RenderSingleEntry(AtheleteList(x), EventResults.val(AtheleteList(x))))
             Next
 
@@ -162,7 +157,7 @@
         Else
             TextBox1.Select()
             If Mode = "Athelete" Then
-                TextBox1.Text = AtheleteData.val(Events.Data(ListBox1.SelectedIndex))
+                TextBox1.Text = AtheleteData.val(Events(ListBox1.SelectedIndex))
             ElseIf Mode = "Event" Then
                 TextBox1.Text = EventResults.val(AtheleteList(ListBox1.SelectedIndex))
             End If
@@ -170,13 +165,15 @@
 
     End Sub
 
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+        ChangeFlag = True
+    End Sub
+
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         If ListBox1.SelectedIndex <> -1 Then
-
-
             If Me.Mode = "Athelete" Then
-                AtheleteData.updval(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
-                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(Events.Data(ListBox1.SelectedIndex), TextBox1.Text)
+                AtheleteData.updval(Events(ListBox1.SelectedIndex), TextBox1.Text)
+                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(Events(ListBox1.SelectedIndex), TextBox1.Text)
             ElseIf Me.Mode = "Event" Then
                 EventResults.updval(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
                 ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
@@ -187,13 +184,16 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Save()
         Main.ChainReload()
+        PutStatus("Manually Saved.")
     End Sub
 
-    Private Sub Management_Load(sender As Object, e As EventArgs) Handles MyBase.Activated
+    Private Sub GotFocus(sender As Object, e As EventArgs) Handles MyBase.Activated
         If Me.ReloadFlag Then
             Me.ActualReload()
         End If
+        PutStatus("Ready")
 
     End Sub
 End Class

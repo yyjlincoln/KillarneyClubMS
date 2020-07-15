@@ -22,16 +22,41 @@ Partial Class FinalPlacing
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 24
+        Me.ListBox1.Location = New System.Drawing.Point(45, 89)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(558, 796)
+        Me.ListBox1.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(483, 908)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(112, 51)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Refresh"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FinalPlacing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(971, 653)
+        Me.ClientSize = New System.Drawing.Size(655, 1018)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Name = "FinalPlacing"
         Me.Text = "FinalPlacing"
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents Button1 As Button
 End Class

@@ -22,15 +22,34 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(540, 882)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(371, 49)
+        Me.Button2.TabIndex = 7
+        Me.Button2.Text = "Open Final Placing Window"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(938, 882)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(130, 50)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "Refresh"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'ListBox1
         '
@@ -59,14 +78,14 @@ Partial Class Main
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Double click to manage an event"
         '
-        'Label3
+        'ListBox2
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(577, 692)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(418, 24)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Double click to manage an athelete"
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.ItemHeight = 24
+        Me.ListBox2.Location = New System.Drawing.Point(554, 139)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(443, 532)
+        Me.ListBox2.TabIndex = 3
         '
         'Label4
         '
@@ -77,38 +96,30 @@ Partial Class Main
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Atheletes Management"
         '
-        'ListBox2
+        'Label3
         '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.ItemHeight = 24
-        Me.ListBox2.Location = New System.Drawing.Point(554, 139)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(443, 532)
-        Me.ListBox2.TabIndex = 3
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(577, 692)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(418, 24)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Double click to manage an athelete"
         '
-        'Button1
+        'Button3
         '
-        Me.Button1.Location = New System.Drawing.Point(938, 759)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(130, 50)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Text = "Refresh"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(540, 759)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(371, 49)
-        Me.Button2.TabIndex = 7
-        Me.Button2.Text = "Open Final Placing Window"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button3.Location = New System.Drawing.Point(624, 741)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(371, 49)
+        Me.Button3.TabIndex = 8
+        Me.Button3.Text = "Add or remove an athelete..."
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1097, 850)
+        Me.ClientSize = New System.Drawing.Size(1097, 998)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
@@ -124,13 +135,13 @@ Partial Class Main
         Me.PerformLayout()
 
     End Sub
-
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents ListBox2 As ListBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Button3 As Button
 End Class

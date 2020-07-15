@@ -9,26 +9,30 @@ Public Class AtheleteInput
 
     Public ExitFlag As Boolean = False
     Public ChangeFlag As Boolean = False
+    Public EndFlag As Boolean = True
 
 
     Public Sub AutoSaveOnDestroy(sender As Object, e As FormClosingEventArgs) Handles Me.Closing
-        If Not ExitFlag And ChangeFlag Then
-            Me.Enabled = False
-            Dim Dia = New Dialog()
-            Dia.Label1.Text = "Please wait for autosave to complete..."
-            Dia.Text = "Exiting Program"
-            AddHandler Dia.FormClosing, Function()
-                                            End
-                                        End Function
-            Dia.Show()
-            Dia.Activate()
-            e.Cancel = True
-            ' AutoSave
-            DBOps.WriteSettings("General:AutoSaved", {"True"})
-            DBOps.WriteSettings("Data:AutoSaved", ListBox1.Items)
+        'If Not ExitFlag And ChangeFlag Then
+        '    Me.Enabled = False
+        '    Dim Dia = New Dialog()
+        '    Dia.Label1.Text = "Please wait for autosave to complete..."
+        '    Dia.Text = "Exiting Program"
+        '    AddHandler Dia.FormClosing, Function()
+        '                                    End
+        '                                End Function
+        '    Dia.Show()
+        '    Dia.Activate()
+        '    e.Cancel = True
+        '    ' AutoSave
+        '    DBOps.WriteSettings("General:AutoSaved", {"True"})
+        '    DBOps.WriteSettings("Data:AutoSaved", ListBox1.Items)
+        '    End
+        'End If
+        UpdateNames(ListBox1.Items)
+        If EndFlag Then
             End
         End If
-        End
 
     End Sub
 
@@ -137,20 +141,27 @@ Public Class AtheleteInput
     End Function
 
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles confirm.Click
-        If MsgBox("Continue with " & ListBox1.Items.Count & " athletes? You can not change it later!", Title:=
-               "Confirmation", Buttons:=
-               vbYesNo) = vbYes Then
-            UpdateNames(ListBox1.Items)
-            Main.Show()
-            Main.Activate()
-            MyBase.Hide()
-            ExitFlag = True
-        End If
+        'If MsgBox("Continue with " & ListBox1.Items.Count & " athletes? You can not change it later!", Title:=
+        '       "Confirmation", Buttons:=
+        '       vbYesNo) = vbYes Then
+        '    UpdateNames(ListBox1.Items)
+        '    Main.Show()
+        '    Main.Activate()
+        '    MyBase.Hide()
+        '    ExitFlag = True
+        'End If
+        UpdateNames(ListBox1.Items)
+        Main.Show()
+        Main.Activate()
+        EndFlag = False
+        Me.Close()
+        ExitFlag = True
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        UpdateNames(ListBox1.Items)
-        ChangeFlag = False
+        '        UpdateNames(ListBox1.Items)
+        '      ChangeFlag = False
+        MsgBox("From version 1.10.2, all changes are automatically saved.")
     End Sub
 End Class
 

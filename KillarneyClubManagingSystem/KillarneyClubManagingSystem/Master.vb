@@ -1,8 +1,13 @@
 ﻿Public Class Master
     Private Sub Master_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MyBase.Hide()
+        Me.Hide()
         Dim LaunchWindow = New AtheleteInput()
         UFIMod.RegisterUFI("Launch::AtheleteInput", LaunchWindow)
-        LaunchWindow.Show()
+        Try
+            LaunchWindow.Show()
+        Catch ex As Exception
+            Logging.Critical("Master", "")
+        End Try
+
     End Sub
 End Class
