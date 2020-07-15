@@ -85,6 +85,22 @@ Public Class AtheleteInput
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Public Function Init()
+        If Not UFIMod.RegisterUFI("AtheleteInput::Main", Me) Then
+            UFIMod.GetInstanceByUFI("AtheleteInput::Main").Activate()
+            Me.Close()
+            Return False
+        End If
+
+        AddHandler Me.FormClosed, Function()
+                                      UFIMod.DeregisterUFI("AtheleteInput::Main")
+                                  End Function
+
+        Me.Text = "Welcome"
+        Me.Show()
+
         Dim r = DBOps.ReadSettings("General:AutoSaved")
         If r.count > 0 Then
             If r(0) = "True" Then
@@ -113,7 +129,9 @@ Public Class AtheleteInput
         ListBox1.SelectedIndex = ListBox1.Items.Count - 1
         TextBox1.Select()
         UpdateStat()
-    End Sub
+
+        Return Me
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ChangeFlag = True
@@ -151,8 +169,7 @@ Public Class AtheleteInput
         '    ExitFlag = True
         'End If
         UpdateNames(ListBox1.Items)
-        Main.Show()
-        Main.Activate()
+        Dim LauncherMain = New Main().Init()
         EndFlag = False
         Me.Close()
         ExitFlag = True

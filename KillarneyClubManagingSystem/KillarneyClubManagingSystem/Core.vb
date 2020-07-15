@@ -207,4 +207,20 @@ Module Calculator
         Return ScoresAllocated
     End Function
 
+    Function GetPlacingsByEventName(EventName)
+        Dim SortedEvent = Calculator.SortEvents(EventName)
+        Dim Ev = Core.GetEventResultsByEventName(EventName)
+        Dim ReturnValue = New MappedData()
+
+        For x As Integer = 0 To SortedEvent.Count - 1
+            If Ev.val(SortedEvent(x)) <> Nothing Then
+                ReturnValue.updval(SortedEvent(x), x + 1)
+            Else
+                ReturnValue.updval(SortedEvent(x), 0)
+            End If
+        Next
+        Return ReturnValue
+    End Function
+
+
 End Module

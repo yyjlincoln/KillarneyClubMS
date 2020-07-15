@@ -53,6 +53,7 @@
 
         End Property
         Private _Sep = "|"
+        Public Name = ""
 
         Public Function Init(DataInstance As Data, Optional Sep As String = "|")
             _Sep = Sep

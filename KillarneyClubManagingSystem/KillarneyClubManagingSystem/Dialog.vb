@@ -22,6 +22,7 @@ Public Class Dialog
     Public Function u(message, Optional title = "Please wait...")
         Label1.Text = message
         Me.Text = title
+        Me.Update()
     End Function
 
 End Class

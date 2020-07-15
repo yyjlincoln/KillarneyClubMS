@@ -2,11 +2,11 @@
     Private Sub Master_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Hide()
         Dim LaunchWindow = New AtheleteInput()
-        UFIMod.RegisterUFI("Launch::AtheleteInput", LaunchWindow)
+
         Try
-            LaunchWindow.Show()
+            LaunchWindow.Init()
         Catch ex As Exception
-            Logging.Critical("Master", "")
+            Logging.Critical("Master", "Can not initialize AtheleteInput.")
         End Try
 
     End Sub

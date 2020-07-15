@@ -1,6 +1,7 @@
 ﻿Module DBOps
     Public FileName As String = "data.ini"
 
+
     Public Function ReadSettings(Block, Optional AsDataClass = False) ' Otherwise it will be converted to a list
         Dim Rd As New System.IO.StreamReader(FileName)
         Dim l = Split(Rd.ReadToEnd(), System.Environment.NewLine)

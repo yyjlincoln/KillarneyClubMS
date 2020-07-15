@@ -90,8 +90,10 @@
         If Me.Mode <> "Event" Then
             Button2.Hide()
         End If
+        Me.Text = "Manage """ & Me.Name & """ (" & Me.Mode & ")"
         Me.Show()
         Me.Activate()
+
         ReadData()
         Return Me
     End Function
@@ -211,6 +213,6 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+        Dim placingw = New Placing().Init("By" & Me.Mode, Me.Name)
     End Sub
 End Class

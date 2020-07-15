@@ -82,10 +82,11 @@
     <Compile Include="Dialog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FinalPlacing.Designer.vb">
-      <DependentUpon>FinalPlacing.vb</DependentUpon>
+    <Compile Include="ExportMod.vb" />
+    <Compile Include="Placing.Designer.vb">
+      <DependentUpon>Placing.vb</DependentUpon>
     </Compile>
-    <Compile Include="FinalPlacing.vb">
+    <Compile Include="Placing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logging.vb" />
@@ -136,13 +137,19 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UFIMod.vb" />
+    <Compile Include="WindowManager.Designer.vb">
+      <DependentUpon>WindowManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WindowManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialog.resx">
       <DependentUpon>Dialog.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FinalPlacing.resx">
-      <DependentUpon>FinalPlacing.vb</DependentUpon>
+    <EmbeddedResource Include="Placing.resx">
+      <DependentUpon>Placing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management.resx">
       <DependentUpon>Management.vb</DependentUpon>
@@ -164,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlacingWindowsByAtheletes.resx">
       <DependentUpon>PlacingWindowsByAtheletes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowManager.resx">
+      <DependentUpon>WindowManager.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FinalPlacing
+Partial Class Placing
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
@@ -25,6 +25,7 @@ Partial Class FinalPlacing
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -54,15 +55,25 @@ Partial Class FinalPlacing
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Reload is required."
         '
-        'FinalPlacing
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(244, 909)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(204, 48)
+        Me.Button2.TabIndex = 3
+        Me.Button2.Text = "Export to CSV"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Placing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(655, 1018)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListBox1)
-        Me.Name = "FinalPlacing"
+        Me.Name = "Placing"
         Me.Text = "FinalPlacing"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -72,4 +83,5 @@ Partial Class FinalPlacing
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents Button2 As Button
 End Class

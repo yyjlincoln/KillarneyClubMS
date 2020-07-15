@@ -1,8 +1,29 @@
-﻿Public Class Main
+﻿Imports KillarneyClubManagingSystem
+
+Public Class Main
+    Implements UFIMod.UFIBase
+
+    Public Property UFI As String Implements UFIBase.UFI
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Reload()
         Dev()
     End Sub
+    Public Function Init()
+        If Not UFIMod.RegisterUFI("Dashboard::Main", Me) Then
+            UFIMod.GetInstanceByUFI("Dashboard::Main").Activate()
+            Me.Close()
+            Return False
+        End If
+        AddHandler Me.FormClosed, Function()
+                                      UFIMod.DeregisterUFI("Launcher::Main")
+                                  End Function
+
+        Me.Text = "Dashboard"
+        Me.Show()
+
+        Return Me
+    End Function
     Private Sub Dev()
         '        For x As Integer = 0 To ListBox2.Items.Count - 1
         '       Dim Mgn = New Management()
@@ -21,7 +42,6 @@
             Debug.Print(r(x) & " : " & d.val(r(x)))
         Next
         Dim q = Calculator.AllocateScoresByEventName("1500m")
-
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
@@ -67,6 +87,9 @@
         For x As Integer = 0 To toReloadPlacingWindows.Count - 1
             toReloadPlacingWindows(x).Reload()
         Next
+
+        ' Window Manager
+        UFIMod.GetInstanceByUFI("")
         'diag.close()
     End Function
     Private Sub EventDClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
@@ -96,7 +119,7 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim fp = New FinalPlacing().Init()
+        Dim fp = New Placing().Init("Final")
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.DoubleClick
@@ -114,12 +137,28 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim AtheInput = New AtheleteInput()
-        AtheInput.EndFlag = False
-        AddHandler AtheInput.FormClosed, Function()
-                                             Me.Reload()
-                                             Me.ChainReload()
-                                         End Function
-        AtheInput.Show()
+        Try
+            Dim AtheInput As AtheleteInput = New AtheleteInput().Init()
+            AtheInput.EndFlag = False
+            AddHandler AtheInput.FormClosed, Function()
+                                                 Me.Reload()
+                                                 Me.ChainReload()
+                                             End Function
+            AtheInput.Show()
+        Catch ex As Exception
+
+        End Try
+
+
+
+
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim wm = New WindowManager().Init()
+    End Sub
+
+    Private Function UFIBase_Reload() As Object Implements UFIBase.Reload
+
+    End Function
 End Class
