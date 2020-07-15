@@ -139,8 +139,10 @@ End Module
 Module Calculator
 
     Private Methods
+    Private EventsPointsAlloc
     Sub New()
         Methods = DBOps.ReadSettings("General:SortingMethods", True).MapData()
+        EventsPointsAlloc = DBOps.ReadSettings("General:PlacingToPoints", True).MapData()
     End Sub
 
     Function SortEvents(EventName)
@@ -162,6 +164,11 @@ Module Calculator
             Logging.Critical("Core.GetSortingMethod()", "Database corroption found: For event " & EventName & ", sorting method " & _m & " is invalid.")
             Return Nothing
         End If
+    End Function
+
+
+    Function AllocateScoresByEventName(EventName)
+
     End Function
 
 End Module
