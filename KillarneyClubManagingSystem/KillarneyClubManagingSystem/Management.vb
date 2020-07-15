@@ -87,6 +87,9 @@
                                        UFIMod.DeregisterUFI(Me.UFI)
                                        Main.ChainReload()
                                    End Function
+        If Me.Mode <> "Event" Then
+            Button2.Hide()
+        End If
         Me.Show()
         Me.Activate()
         ReadData()
@@ -165,9 +168,6 @@
 
     End Sub
 
-    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
-        ChangeFlag = True
-    End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         If ListBox1.SelectedIndex <> -1 Then
@@ -183,6 +183,19 @@
         'UpdateForm()
     End Sub
 
+    Private Sub TextBox1_validate(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
+        ' Real-time validation to make sure the data can be converted
+        If Asc(e.KeyChar) <> 8 Then
+            Try
+                Dim _test = CType(TextBox1.Text + e.KeyChar, Double)
+            Catch ex As Exception
+                e.Handled = True
+            End Try
+        End If
+        ChangeFlag = True
+    End Sub
+
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Save()
         Main.ChainReload()
@@ -194,6 +207,10 @@
             Me.ActualReload()
         End If
         PutStatus("Ready")
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
     End Sub
 End Class

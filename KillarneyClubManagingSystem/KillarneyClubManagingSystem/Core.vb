@@ -1,4 +1,40 @@
 ﻿Module Core
+
+    Function NextValidIndex(IgnoreZero, List, StartIndex)
+        If Not IgnoreZero Then
+            ' If not ignore zero, then all index is valid. Return the next one.
+            Return StartIndex
+        Else
+            For x As Integer = StartIndex To List.Count - 1
+                ' Ignore zero, then return next non-zero index
+                If List(x) <> 0 Then
+                    Return x
+                End If
+            Next
+            ' No non-zero index anymore
+            ' Return StartIndex
+            Return StartIndex
+        End If
+    End Function
+    Function Min(Inverse, List, StartIndex, Optional IgnoreZero = True)
+        Dim pickIndex = NextValidIndex(IgnoreZero, List, StartIndex)
+        ' Now, loop through the list and determine the largest / smallest element and put it in the front.
+        ' y here is the index of the list element, from x to Listlength - 1 (which is the unordered part of the list).
+        For y As Integer = StartIndex To List.Count - 1
+            ' Check mode
+            If Inverse Then
+                If List(y) >= List(pickIndex) And Not (IgnoreZero And List(y) = 0) Then
+                    pickIndex = y
+                End If
+            Else
+                If List(y) <= List(pickIndex) And Not (IgnoreZero And List(y) = 0) Then
+                    pickIndex = y
+                End If
+            End If
+        Next
+        Return pickIndex
+
+    End Function
     Function Sort(List As List(Of Double), Optional Inverse As Boolean = False, Optional EachIndexCallback As Action(Of List(Of Double), Integer, Integer) = Nothing, Optional FinalIndexListCallback As Action(Of List(Of Double), List(Of Integer)) = Nothing)
         ' Callbacks explained.
         ' 
@@ -36,21 +72,7 @@
         Dim _temp
         For x As Integer = 0 To ListLength - 1
             ' Initialize default "biggest / smallest" number as the queue start
-            mx = x
-            ' Now, loop through the list and determine the largest / smallest element and put it in the front.
-            ' y here is the index of the list element, from x to Listlength - 1 (which is the unordered part of the list).
-            For y As Integer = x To ListLength - 1
-                ' Check mode
-                If Inverse Then
-                    If List(y) >= List(mx) Then
-                        mx = y
-                    End If
-                Else
-                    If List(y) <= List(mx) Then
-                        mx = y
-                    End If
-                End If
-            Next
+            mx = Min(Inverse, List, x)
             ' The biggest / smallest element is determined.
             Debug.Print("Found largest / smallest in the list: " & List(mx))
             ' Now, put the element at index x (which is the end of the ordered part so that part is not looped next time hence is ordered)
@@ -166,9 +188,23 @@ Module Calculator
         End If
     End Function
 
+    Function AllocateScores(Placing As Integer, ActualResult As Double)
+        If ActualResult <> 0 Then
+            Return CType(EventsPointsAlloc.val(Placing), Double)
+        Else
+            Return 0.0
+        End If
+
+    End Function
 
     Function AllocateScoresByEventName(EventName)
-
+        Dim EventResults = Core.GetEventResultsByEventName(EventName)
+        Dim EventSorted = Calculator.SortEvents(EventName)
+        Dim ScoresAllocated As MappedData = New MappedData()
+        For x As Integer = 0 To EventSorted.Count - 1
+            ScoresAllocated.updval(EventSorted(x), AllocateScores(x, EventResults.val(EventSorted(x))))
+        Next
+        Return ScoresAllocated
     End Function
 
 End Module

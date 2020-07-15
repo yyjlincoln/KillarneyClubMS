@@ -31,9 +31,10 @@ Partial Class Management
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.GroupBox1.SuspendLayout
-        Me.GroupBox2.SuspendLayout
-        Me.SuspendLayout
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.SuspendLayout()
         '
         'Label1
         '
@@ -78,6 +79,7 @@ Partial Class Management
         '
         'TextBox1
         '
+        Me.TextBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.TextBox1.Location = New System.Drawing.Point(31, 492)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(586, 35)
@@ -119,11 +121,21 @@ Partial Class Management
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "All changes are automatically saved when the window is closed."
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(66, 725)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(175, 51)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "See Ranking"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1410, 811)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox2)
@@ -148,4 +160,5 @@ Partial Class Management
     Friend WithEvents Label2 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Label4 As Label
+    Friend WithEvents Button2 As Button
 End Class

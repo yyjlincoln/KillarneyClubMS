@@ -20,6 +20,8 @@
         For x As Integer = 0 To r.count - 1
             Debug.Print(r(x) & " : " & d.val(r(x)))
         Next
+        Dim q = Calculator.AllocateScoresByEventName("1500m")
+
     End Sub
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
