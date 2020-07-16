@@ -32,6 +32,7 @@ Partial Class Management
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -58,12 +59,13 @@ Partial Class Management
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(708, 162)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(641, 557)
+        Me.GroupBox1.Size = New System.Drawing.Size(641, 590)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Results"
@@ -105,7 +107,7 @@ Partial Class Management
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(1148, 725)
+        Me.Button1.Location = New System.Drawing.Point(1148, 758)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(221, 57)
         Me.Button1.TabIndex = 4
@@ -115,7 +117,7 @@ Partial Class Management
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(388, 741)
+        Me.Label4.Location = New System.Drawing.Point(388, 774)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(754, 24)
         Me.Label4.TabIndex = 5
@@ -123,18 +125,27 @@ Partial Class Management
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(66, 725)
+        Me.Button2.Location = New System.Drawing.Point(66, 758)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(175, 51)
         Me.Button2.TabIndex = 6
         Me.Button2.Text = "See Ranking"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(343, 546)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(274, 24)
+        Me.Label5.TabIndex = 12
+        Me.Label5.Text = "Use arrows to navigate"
+        '
         'Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1410, 811)
+        Me.ClientSize = New System.Drawing.Size(1410, 848)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Button1)
@@ -161,4 +172,5 @@ Partial Class Management
     Friend WithEvents Button1 As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label5 As Label
 End Class

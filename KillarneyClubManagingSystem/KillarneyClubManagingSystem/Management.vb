@@ -197,6 +197,18 @@
         ChangeFlag = True
     End Sub
 
+    Private Sub Textbox1_Navigate(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Down Then
+            If ListBox1.SelectedIndex + 1 <= ListBox1.Items.Count - 1 Then
+                ListBox1.SelectedIndex = ListBox1.SelectedIndex + 1
+            End If
+        ElseIf e.KeyCode = Keys.Up Then
+            If ListBox1.SelectedIndex - 1 >= 0 And ListBox1.Items.Count > 0 Then
+                ListBox1.SelectedIndex = ListBox1.SelectedIndex - 1
+            End If
+        End If
+    End Sub
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Save()

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AtheleteInput
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class AtheleteInput
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.confirm = New System.Windows.Forms.Button()
@@ -32,7 +32,9 @@ Partial Class AtheleteInput
         Me.count = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.SuspendLayout()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.SuspendLayout
         '
         'Label1
         '
@@ -114,7 +116,7 @@ Partial Class AtheleteInput
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(250, 365)
+        Me.Label4.Location = New System.Drawing.Point(168, 386)
         Me.Label4.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(586, 24)
@@ -130,11 +132,31 @@ Partial Class AtheleteInput
         Me.Button2.Text = "Save"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(480, 352)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(274, 24)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Use arrows to navigate"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(118, 495)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(742, 24)
+        Me.Label5.TabIndex = 12
+        Me.Label5.Text = "All changes are automatically saved when the window is closed"
+        '
         'AtheleteInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(890, 510)
+        Me.ClientSize = New System.Drawing.Size(890, 545)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.count)
@@ -149,7 +171,7 @@ Partial Class AtheleteInput
         Me.Name = "AtheleteInput"
         Me.Text = "Welcome"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.PerformLayout
 
     End Sub
 
@@ -163,4 +185,6 @@ Partial Class AtheleteInput
     Friend WithEvents count As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label5 As Label
 End Class

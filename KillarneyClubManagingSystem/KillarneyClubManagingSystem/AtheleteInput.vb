@@ -75,6 +75,18 @@ Public Class AtheleteInput
 
     End Sub
 
+    Private Sub Textbox1_Navigate(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+        If e.KeyCode = Keys.Down Then
+            If ListBox1.SelectedIndex + 1 <= ListBox1.Items.Count - 1 Then
+                ListBox1.SelectedIndex = ListBox1.SelectedIndex + 1
+            End If
+        ElseIf e.KeyCode = Keys.Up Then
+            If ListBox1.SelectedIndex - 1 >= 0 And ListBox1.Items.Count > 0 Then
+                ListBox1.SelectedIndex = ListBox1.SelectedIndex - 1
+            End If
+        End If
+    End Sub
+
     Private Sub handlekey(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
         If e.KeyCode = Keys.Enter Then
             adda.PerformClick()
@@ -84,7 +96,7 @@ Public Class AtheleteInput
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Button2.Hide()
     End Sub
 
     Public Function Init()
