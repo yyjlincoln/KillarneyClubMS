@@ -1,3 +1,4 @@
+Default = '''
 $ General:Events
 Long Jump
 Javelin
@@ -18,4 +19,11 @@ $ General:PlacingToPoints
 3|1
 
 $ Data:AtheleteNames
+'''
 
+with open('data.ini','w') as f:
+    f.write(Default)
+
+print('A default configuration file has been generated.')
+print('Please copy that file to the same folder as the program.')
+input('[Exit]>')

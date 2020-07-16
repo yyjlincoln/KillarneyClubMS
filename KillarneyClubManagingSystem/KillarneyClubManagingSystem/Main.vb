@@ -7,7 +7,7 @@ Public Class Main
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Reload()
-        Dev()
+        'Dev()
     End Sub
     Public Function Init()
         If Not UFIMod.RegisterUFI("Dashboard::Main", Me) Then

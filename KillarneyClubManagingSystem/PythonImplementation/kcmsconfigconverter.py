@@ -51,13 +51,13 @@ class KCMSConfig:
                     return l.ConvertBack()
 
             @classmethod
-            def toConfig(cls, plaintext):
+            def toConfig(cls, KCMSConvertedDict):
                 # pt = json.loads(plaintext)
-                pt = plaintext
-                nodes = cls.getAllNodes(pt)
+                nodes = cls.getAllNodes(KCMSConvertedDict)
                 out = ''
                 for x in nodes:
-                    out += '\n$ ' + x[0] + '\n' + '\n'.join(cls.allElementsToString(x[1]))
+                    out += '\n$ ' + x[0] + '\n' + \
+                        '\n'.join(cls.allElementsToString(x[1]))
                 return out
 
             @classmethod
@@ -75,7 +75,7 @@ class KCMSConfig:
         class JSON:
             @staticmethod
             def toJson(config):
-                return json.dumps(KCMSConfig.IO.Input.toDict(config))
+                return json.dumps(KCMSConfig.IO.Input.toDict(config), indent=4, sort_keys=True)
 
             @staticmethod
             def fromJson(config):
@@ -103,7 +103,7 @@ class KCMSConfig:
                 return super().__getattribute__(name)
             except:
                 return self.MappedDataConverted[name]
-        
+
         def __dict__(self):
             return self.MappedDataConverted
 
@@ -124,10 +124,9 @@ class KCMSConfig:
 
         def __setitem__(self, key, value):
             return setattr(self, key, value)
-        
+
         def __iter__(self):
             return iter(self.MappedDataConverted)
-
 
 
 # a = KCMSConfig.MappedDataCompatiable([
