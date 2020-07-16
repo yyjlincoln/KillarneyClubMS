@@ -202,7 +202,7 @@ Module Calculator
         Dim EventSorted = Calculator.SortEvents(EventName)
         Dim ScoresAllocated As MappedData = New MappedData()
         For x As Integer = 0 To EventSorted.Count - 1
-            ScoresAllocated.updval(EventSorted(x), AllocateScores(x, EventResults.val(EventSorted(x))))
+            ScoresAllocated.updval(EventSorted(x), AllocateScores(x + 1, EventResults.val(EventSorted(x)))) ' Placing start from 1
         Next
         Return ScoresAllocated
     End Function
