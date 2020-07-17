@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class AtheleteInput
+Partial Class AthleteInput
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -150,7 +150,7 @@ Partial Class AtheleteInput
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "All changes are automatically saved when the window is closed"
         '
-        'AtheleteInput
+        'AthleteInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -168,7 +168,7 @@ Partial Class AtheleteInput
         Me.Controls.Add(Me.confirm)
         Me.Controls.Add(Me.Label1)
         Me.Margin = New System.Windows.Forms.Padding(6)
-        Me.Name = "AtheleteInput"
+        Me.Name = "AthleteInput"
         Me.Text = "Welcome"
         Me.ResumeLayout(False)
         Me.PerformLayout

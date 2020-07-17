@@ -131,27 +131,27 @@
         Return Nothing
     End Function
 
-    Function GetAtheleteDataByAtheleteName(AtheleteName As String, Optional AsMappedData As Boolean = True)
+    Function GetAthleteDataByAthleteName(AthleteName As String, Optional AsMappedData As Boolean = True)
         If AsMappedData Then
-            Return DBOps.ReadSettings("Data:Athelete:" & AtheleteName, True).MapData()
+            Return DBOps.ReadSettings("Data:Athlete:" & AthleteName, True).MapData()
         Else
-            Return DBOps.ReadSettings("Data:Athelete:" & AtheleteName, False)
+            Return DBOps.ReadSettings("Data:Athlete:" & AthleteName, False)
         End If
     End Function
 
     Function GetAllEvents(Optional AsDataClass As Boolean = False)
         Return DBOps.ReadSettings("General:Events", AsDataClass)
     End Function
-    Function GetAllAtheletes(Optional AsDataClass As Boolean = False)
-        Return DBOps.ReadSettings("Data:AtheleteNames", AsDataClass)
+    Function GetAllAthletes(Optional AsDataClass As Boolean = False)
+        Return DBOps.ReadSettings("Data:AthleteNames", AsDataClass)
     End Function
 
     Function GetEventResultsByEventName(EventName)
-        Dim AtheleteList = GetAllAtheletes()
+        Dim AthleteList = GetAllAthletes()
         Dim EventResults = New DBOverlay.MappedData()
-        For x As Integer = 0 To AtheleteList.Count - 1
-            Dim IndividualResult = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData().val(EventName)
-            EventResults.updval(AtheleteList(x), IndividualResult)
+        For x As Integer = 0 To AthleteList.Count - 1
+            Dim IndividualResult = DBOps.ReadSettings("Data:Athlete:" & AthleteList(x), True).MapData().val(EventName)
+            EventResults.updval(AthleteList(x), IndividualResult)
         Next
         Return EventResults
     End Function

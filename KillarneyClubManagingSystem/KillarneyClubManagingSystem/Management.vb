@@ -3,9 +3,9 @@
 
     Public Mode As String
     Public Name As String
-    Public AtheleteData
+    Public AthleteData
     Public Events
-    Public AtheleteList
+    Public AthleteList
     Public EventResults
     Private ListBoxUpdateFlag
     Public ReloadFlag = False
@@ -38,30 +38,30 @@
 
     Public Sub Save()
         ChangeFlag = False
-        If Me.Mode = "Athelete" Then
+        If Me.Mode = "Athlete" Then
             Dim _data = New List(Of String)
 
             For x As Integer = 0 To Events.count - 1
-                If AtheleteData.val(Events(x)) <> Nothing And AtheleteData.val(Events(x)) <> "" Then
-                    _data.Add(Events(x) & "|" & AtheleteData.val(Events(x)))
+                If AthleteData.val(Events(x)) <> Nothing And AthleteData.val(Events(x)) <> "" Then
+                    _data.Add(Events(x) & "|" & AthleteData.val(Events(x)))
                 End If
             Next
 
-            DBOps.WriteSettings("Data:Athelete:" & Me.Name, _data)
+            DBOps.WriteSettings("Data:Athlete:" & Me.Name, _data)
         ElseIf Me.Mode = "Event" Then
-            For x As Integer = 0 To AtheleteList.Count - 1
-                If EventResults.val(AtheleteList(x)) <> Nothing Then
+            For x As Integer = 0 To AthleteList.Count - 1
+                If EventResults.val(AthleteList(x)) <> Nothing Then
                     ' Create a new MappedData
                     Dim _data As MappedData
                     ' Read original data
-                    _data = DBOps.ReadSettings("Data:Athelete:" & AtheleteList(x), True).MapData()
+                    _data = DBOps.ReadSettings("Data:Athlete:" & AthleteList(x), True).MapData()
                     ' Now update the data with the cached data
                     ' This is because that the program DOES NOT interact directly with the original
                     ' data. Instead a cached data that only include information about a specific
                     ' event is used, so now this needs to be converted & change the original data
                     ' so that it can be flatten and written
-                    _data.updval(Me.Name, EventResults.val(AtheleteList(x)))
-                    DBOps.WriteSettings("Data:Athelete:" & AtheleteList(x), _data.Flatten().Data)
+                    _data.updval(Me.Name, EventResults.val(AthleteList(x)))
+                    DBOps.WriteSettings("Data:Athlete:" & AthleteList(x), _data.Flatten().Data)
                 End If
             Next
         End If
@@ -100,15 +100,15 @@
 
     Public Function ReadData()
         PutStatus("Reading data...")
-        If Me.Mode = "Athelete" Then
+        If Me.Mode = "Athlete" Then
             ' TODO: Pack those into functions and put them in core so it can also be
             ' used by the sorting algorithm
-            AtheleteData = Core.GetAtheleteDataByAtheleteName(Me.Name)
+            AthleteData = Core.GetAthleteDataByAthleteName(Me.Name)
             Events = Core.GetAllEvents()
             UpdateForm()
 
         ElseIf Me.Mode = "Event" Then
-            AtheleteList = Core.GetAllAtheletes()
+            AthleteList = Core.GetAllAthletes()
             EventResults = Core.GetEventResultsByEventName(Me.Name)
             UpdateForm()
         End If
@@ -124,12 +124,12 @@
     End Function
 
     Public Function UpdateForm()
-        If Me.Mode = "Athelete" Then
+        If Me.Mode = "Athlete" Then
             Dim i = ListBox1.SelectedIndex
             ListBoxUpdateFlag = True
             ListBox1.Items.Clear()
             For x As Integer = 0 To Events.Count - 1
-                ListBox1.Items.Add(RenderSingleEntry(Events(x), AtheleteData.val(Events(x))))
+                ListBox1.Items.Add(RenderSingleEntry(Events(x), AthleteData.val(Events(x))))
             Next
             ListBox1.SelectedIndex = i
             ListBoxUpdateFlag = False
@@ -138,8 +138,8 @@
             ListBoxUpdateFlag = True
             Dim i = ListBox1.SelectedIndex
             ListBox1.Items.Clear()
-            For x As Integer = 0 To AtheleteList.count - 1
-                ListBox1.Items.Add(RenderSingleEntry(AtheleteList(x), EventResults.val(AtheleteList(x))))
+            For x As Integer = 0 To AthleteList.count - 1
+                ListBox1.Items.Add(RenderSingleEntry(AthleteList(x), EventResults.val(AthleteList(x))))
             Next
 
             ListBox1.SelectedIndex = i
@@ -161,10 +161,10 @@
             TextBox1.Text = ""
         Else
             TextBox1.Select()
-            If Mode = "Athelete" Then
-                TextBox1.Text = AtheleteData.val(Events(ListBox1.SelectedIndex))
+            If Mode = "Athlete" Then
+                TextBox1.Text = AthleteData.val(Events(ListBox1.SelectedIndex))
             ElseIf Mode = "Event" Then
-                TextBox1.Text = EventResults.val(AtheleteList(ListBox1.SelectedIndex))
+                TextBox1.Text = EventResults.val(AthleteList(ListBox1.SelectedIndex))
             End If
         End If
 
@@ -173,12 +173,12 @@
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         If ListBox1.SelectedIndex <> -1 Then
-            If Me.Mode = "Athelete" Then
-                AtheleteData.updval(Events(ListBox1.SelectedIndex), TextBox1.Text)
+            If Me.Mode = "Athlete" Then
+                AthleteData.updval(Events(ListBox1.SelectedIndex), TextBox1.Text)
                 ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(Events(ListBox1.SelectedIndex), TextBox1.Text)
             ElseIf Me.Mode = "Event" Then
-                EventResults.updval(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
-                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(AtheleteList(ListBox1.SelectedIndex), TextBox1.Text)
+                EventResults.updval(AthleteList(ListBox1.SelectedIndex), TextBox1.Text)
+                ListBox1.Items(ListBox1.SelectedIndex) = RenderSingleEntry(AthleteList(ListBox1.SelectedIndex), TextBox1.Text)
             End If
 
         End If

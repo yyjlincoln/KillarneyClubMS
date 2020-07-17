@@ -57,12 +57,12 @@ def init():
     quantity = int(input('How many names do you want? >'))
     T = T[:quantity]
 
-    pool('$ Data:AtheleteNames')
+    pool('$ Data:AthleteNames')
     for x in T:
         pool(x)
 
     for x in T:
-        pool('$ Data:Athelete:'+x)
+        pool('$ Data:Athlete:'+x)
         for y in Q:
             pool(f'{y}|{str(random.randint(1,10**7)*0.01)}')
         pool()

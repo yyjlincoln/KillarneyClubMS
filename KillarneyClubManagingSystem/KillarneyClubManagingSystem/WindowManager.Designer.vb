@@ -30,7 +30,7 @@ Partial Class WindowManager
         Me.CloseSelectedWindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllEventManagementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllAtheleteManagementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllAthleteManagementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllManagementWindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllPlacingWindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -76,7 +76,7 @@ Partial Class WindowManager
         '
         'CloseToolStripMenuItem
         '
-        Me.CloseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllEventManagementsToolStripMenuItem, Me.AllAtheleteManagementsToolStripMenuItem, Me.AllManagementWindowsToolStripMenuItem, Me.AllPlacingWindowsToolStripMenuItem})
+        Me.CloseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllEventManagementsToolStripMenuItem, Me.AllAthleteManagementsToolStripMenuItem, Me.AllManagementWindowsToolStripMenuItem, Me.AllPlacingWindowsToolStripMenuItem})
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(387, 38)
         Me.CloseToolStripMenuItem.Text = "Close.."
@@ -87,11 +87,11 @@ Partial Class WindowManager
         Me.AllEventManagementsToolStripMenuItem.Size = New System.Drawing.Size(452, 44)
         Me.AllEventManagementsToolStripMenuItem.Text = "All Event Managements"
         '
-        'AllAtheleteManagementsToolStripMenuItem
+        'AllAthleteManagementsToolStripMenuItem
         '
-        Me.AllAtheleteManagementsToolStripMenuItem.Name = "AllAtheleteManagementsToolStripMenuItem"
-        Me.AllAtheleteManagementsToolStripMenuItem.Size = New System.Drawing.Size(452, 44)
-        Me.AllAtheleteManagementsToolStripMenuItem.Text = "All Athelete Managements"
+        Me.AllAthleteManagementsToolStripMenuItem.Name = "AllAthleteManagementsToolStripMenuItem"
+        Me.AllAthleteManagementsToolStripMenuItem.Size = New System.Drawing.Size(452, 44)
+        Me.AllAthleteManagementsToolStripMenuItem.Text = "All Athlete Managements"
         '
         'AllManagementWindowsToolStripMenuItem
         '
@@ -126,7 +126,7 @@ Partial Class WindowManager
     Friend WithEvents CloseSelectedWindowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AllEventManagementsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AllAtheleteManagementsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AllAthleteManagementsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AllManagementWindowsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AllPlacingWindowsToolStripMenuItem As ToolStripMenuItem
 End Class

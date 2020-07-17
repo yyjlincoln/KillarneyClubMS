@@ -95,7 +95,7 @@ Partial Class Main
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(250, 24)
         Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Atheletes Management"
+        Me.Label4.Text = "Athletes Management"
         '
         'Label3
         '
@@ -104,7 +104,7 @@ Partial Class Main
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(418, 24)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Double click to manage an athelete"
+        Me.Label3.Text = "Double click to manage an athlete"
         '
         'Button3
         '
@@ -112,7 +112,7 @@ Partial Class Main
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(371, 49)
         Me.Button3.TabIndex = 8
-        Me.Button3.Text = "Add or remove an athelete..."
+        Me.Button3.Text = "Add or remove an athlete..."
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4

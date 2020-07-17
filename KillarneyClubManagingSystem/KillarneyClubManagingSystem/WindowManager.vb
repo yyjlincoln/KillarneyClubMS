@@ -89,10 +89,10 @@ Public Class WindowManager
         Next
     End Sub
 
-    Private Sub AllAtheleteManagementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllAtheleteManagementsToolStripMenuItem.Click
-        Dim AllAtheleteMgn = UFIMod.GetInstancesByStart("ManagementWindows::Athelete:")
-        For x As Integer = 0 To AllAtheleteMgn.Count - 1
-            AllAtheleteMgn(x).Close()
+    Private Sub AllAthleteManagementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllAthleteManagementsToolStripMenuItem.Click
+        Dim AllAthleteMgn = UFIMod.GetInstancesByStart("ManagementWindows::Athlete:")
+        For x As Integer = 0 To AllAthleteMgn.Count - 1
+            AllAthleteMgn(x).Close()
         Next
     End Sub
 

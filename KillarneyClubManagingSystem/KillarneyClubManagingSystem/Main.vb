@@ -27,10 +27,10 @@ Public Class Main
     Private Sub Dev()
         '        For x As Integer = 0 To ListBox2.Items.Count - 1
         '       Dim Mgn = New Management()
-        '      Mgn.init("Athelete", ListBox2.Items(x))
+        '      Mgn.init("Athlete", ListBox2.Items(x))
         '     Next
         '        Core.TestSorting()
-        '        Dim test = New PlacingWindowsByAtheletes().Init("AtheN", "EvName")
+        '        Dim test = New PlacingWindowsByAthletes().Init("AtheN", "EvName")
 
         ' Test sorting
         Dim a = New Data().Init(New List(Of String) From {"Test1|0.1", "t2|0.3", "t3|3", "t4|-1", "5|0", "9|0", "8|0", "-1|0", "3|2", "-5|4"}).MapData()
@@ -54,12 +54,12 @@ Public Class Main
         Reload()
     End Sub
     Public Function Reload()
-        Dim AtheleteNames As List(Of String) = DBOps.ReadSettings("Data:AtheleteNames")
+        Dim AthleteNames As List(Of String) = DBOps.ReadSettings("Data:AthleteNames")
         Dim Events As List(Of String) = DBOps.ReadSettings("General:Events")
         ListBox1.Items.Clear()
         ListBox2.Items.Clear()
-        For x As Integer = 0 To AtheleteNames.Count - 1
-            ListBox2.Items.Add(AtheleteNames(x))
+        For x As Integer = 0 To AthleteNames.Count - 1
+            ListBox2.Items.Add(AthleteNames(x))
         Next
         For x As Integer = 0 To Events.Count - 1
             ListBox1.Items.Add(Events(x))
@@ -73,7 +73,7 @@ Public Class Main
         'diag.update()
 
         ' Not reloaded due to performance issues
-        ' Also, athelete list should not change
+        ' Also, athlete list should not change
         '        Me.Reload()
 
         Dim toReload = UFIMod.GetInstancesByStart("ManagementWindows::")
@@ -99,10 +99,10 @@ Public Class Main
         End If
     End Sub
 
-    Private Sub AtheleteDoubleClick(sender As Object, e As EventArgs) Handles ListBox2.DoubleClick
+    Private Sub AthleteDoubleClick(sender As Object, e As EventArgs) Handles ListBox2.DoubleClick
         If ListBox2.SelectedIndex <> -1 Then
-            Dim AtheleteName As String = ListBox2.Items(ListBox2.SelectedIndex)
-            Dim Mgn = New Management().init("Athelete", AtheleteName)
+            Dim AthleteName As String = ListBox2.Items(ListBox2.SelectedIndex)
+            Dim Mgn = New Management().init("Athlete", AthleteName)
         End If
 
     End Sub
@@ -114,7 +114,7 @@ Public Class Main
     End Sub
     Private Sub Listbox2KeyDown(sender As Object, e As KeyEventArgs) Handles ListBox2.KeyDown
         If e.KeyCode = Keys.Enter Then
-            AtheleteDoubleClick(ListBox2, New EventArgs())
+            AthleteDoubleClick(ListBox2, New EventArgs())
         End If
     End Sub
 
@@ -138,7 +138,7 @@ Public Class Main
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
-            Dim AtheInput As AtheleteInput = New AtheleteInput().Init()
+            Dim AtheInput As AthleteInput = New AthleteInput().Init()
             AtheInput.EndFlag = False
             AddHandler AtheInput.FormClosed, Function()
                                                  Me.Reload()

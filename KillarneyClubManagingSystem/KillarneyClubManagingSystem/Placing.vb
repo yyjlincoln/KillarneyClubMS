@@ -27,19 +27,19 @@ Public Class Placing
         End If
     End Function
 
-    Public Function RenderEntry(AtheleteName, FinalScore, Placing)
-        Return "Rank " & Placing & ": " & AtheleteName & ", scored " & FinalScore
+    Public Function RenderEntry(AthleteName, FinalScore, Placing)
+        Return "Rank " & Placing & ": " & AthleteName & ", scored " & FinalScore
     End Function
     Public Function ReadData()
         If Me.Mode = "Final" Then
-            Dim AtheleteNames = Core.GetAllAtheletes()
+            Dim AthleteNames = Core.GetAllAthletes()
             Dim EventNames = Core.GetAllEvents()
             Dim ScoresCombined As MappedData = New MappedData()
             ' Get scoreslist for every event
             For x As Integer = 0 To EventNames.Count - 1
                 Dim CurrentScores = Calculator.AllocateScoresByEventName(EventNames(x))
-                For y As Integer = 0 To AtheleteNames.Count - 1
-                    ScoresCombined.updval(AtheleteNames(y), CType(ScoresCombined.val(AtheleteNames(y)), Double) + CurrentScores.val(AtheleteNames(y)))
+                For y As Integer = 0 To AthleteNames.Count - 1
+                    ScoresCombined.updval(AthleteNames(y), CType(ScoresCombined.val(AthleteNames(y)), Double) + CurrentScores.val(AthleteNames(y)))
                 Next
             Next
             ' Now, rank the total score
@@ -110,11 +110,11 @@ Public Class Placing
 
             Dim diag As Dialog = New Dialog().Init("Process::Output", "Preparing to export...", "Export as CSV")
 
-            Dim AtheleteNames = Core.GetAllAtheletes()
+            Dim AthleteNames = Core.GetAllAthletes()
             Dim EventNames = Core.GetAllEvents()
             Dim ScoresCombined As MappedData = New MappedData()
 
-            diag.u("Preparing AtheleteNames, EventNames...")
+            diag.u("Preparing AthleteNames, EventNames...")
 
             Dim Output As List(Of MappedData) = New List(Of MappedData)
 
@@ -137,10 +137,10 @@ Public Class Placing
                 Output.Add(CurrentRanks) ' Insert rank column
 
 
-                For y As Integer = 0 To AtheleteNames.Count - 1
+                For y As Integer = 0 To AthleteNames.Count - 1
                     diag.u("Updating final points using results from " & EventNames(x))
                     ' Calculate the final point
-                    ScoresCombined.updval(AtheleteNames(y), CType(ScoresCombined.val(AtheleteNames(y)), Double) + CurrentScores.val(AtheleteNames(y)))
+                    ScoresCombined.updval(AthleteNames(y), CType(ScoresCombined.val(AthleteNames(y)), Double) + CurrentScores.val(AthleteNames(y)))
                 Next
 
             Next

@@ -96,11 +96,11 @@
     <Compile Include="Management.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AtheleteInput.vb">
+    <Compile Include="AthleteInput.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AtheleteInput.Designer.vb">
-      <DependentUpon>AtheleteInput.vb</DependentUpon>
+    <Compile Include="AthleteInput.Designer.vb">
+      <DependentUpon>AthleteInput.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.Designer.vb">
@@ -130,12 +130,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PlacingWindowsByAtheletes.Designer.vb">
-      <DependentUpon>PlacingWindowsByAtheletes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PlacingWindowsByAtheletes.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="UFIMod.vb" />
     <Compile Include="WindowManager.Designer.vb">
       <DependentUpon>WindowManager.vb</DependentUpon>
@@ -154,8 +148,8 @@
     <EmbeddedResource Include="Management.resx">
       <DependentUpon>Management.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AtheleteInput.resx">
-      <DependentUpon>AtheleteInput.vb</DependentUpon>
+    <EmbeddedResource Include="AthleteInput.resx">
+      <DependentUpon>AthleteInput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
@@ -168,9 +162,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlacingWindowsByAtheletes.resx">
-      <DependentUpon>PlacingWindowsByAtheletes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowManager.resx">
       <DependentUpon>WindowManager.vb</DependentUpon>

@@ -96,7 +96,7 @@ def loop():
     print('2. Convert current file to JSON Format')
     print('3. Export final placing and scores')
     print('4. Export an event...')
-    # print('5. Export an athelete...')
+    # print('5. Export an athlete...')
     i = input('>')
     while i not in FunctionMap:
         print('Invalid option.')

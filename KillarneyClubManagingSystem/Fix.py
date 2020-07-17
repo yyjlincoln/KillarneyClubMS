@@ -18,7 +18,7 @@ $ General:PlacingToPoints
 2|2
 3|1
 
-$ Data:AtheleteNames
+$ Data:AthleteNames
 '''
 
 with open('data.ini','w') as f:

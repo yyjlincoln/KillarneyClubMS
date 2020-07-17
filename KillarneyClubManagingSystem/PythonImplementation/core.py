@@ -26,7 +26,7 @@ class KCMS:
         if EventName not in self.GetAllEvents():
             return {}
         else:
-            atheDatas = self.Config['Data']['Athelete']
+            atheDatas = self.Config['Data']['Athlete']
             eventData = {}
             for atheData in atheDatas:
                 d = KCMSConfig.MappedDataCompatiable(atheDatas[atheData])
@@ -37,7 +37,7 @@ class KCMS:
                         eventData[atheData] = float(d[EventName])
                     except:
                         raise ValueError(
-                            'Can not convert', d[EventName], 'to float. @Event='+EventName+',Athelete='+atheData)
+                            'Can not convert', d[EventName], 'to float. @Event='+EventName+',Athlete='+atheData)
 
             return eventData
 
@@ -94,14 +94,14 @@ class KCMS:
             Ret[EventSort[x]] = x + 1
         return Ret
 
-    def GetAllAtheletes(self):
-        return self.Config['Data']['AtheleteNames']
+    def GetAllAthletes(self):
+        return self.Config['Data']['AthleteNames']
 
     def GetFinalPoints(self):
         Ret = {}
         for x in self.GetAllEvents():
             EventPoints = self.GetPointsByEventName(x)
-            for y in self.GetAllAtheletes():
+            for y in self.GetAllAthletes():
                 if y in EventPoints:
                     Ret[y] = Ret.get(y, 0) + EventPoints[y]
 

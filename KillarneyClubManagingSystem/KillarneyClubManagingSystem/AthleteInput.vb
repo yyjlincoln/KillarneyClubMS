@@ -1,6 +1,6 @@
 ﻿Imports KillarneyClubManagingSystem
 
-Public Class AtheleteInput
+Public Class AthleteInput
     Implements UFIMod.UFIBase
     Public Property UFI As String Implements UFIBase.UFI
     Public Function Reload() Implements UFIBase.Reload
@@ -100,14 +100,14 @@ Public Class AtheleteInput
     End Sub
 
     Public Function Init()
-        If Not UFIMod.RegisterUFI("AtheleteInput::Main", Me) Then
-            UFIMod.GetInstanceByUFI("AtheleteInput::Main").Activate()
+        If Not UFIMod.RegisterUFI("AthleteInput::Main", Me) Then
+            UFIMod.GetInstanceByUFI("AthleteInput::Main").Activate()
             Me.Close()
             Return False
         End If
 
         AddHandler Me.FormClosed, Function()
-                                      UFIMod.DeregisterUFI("AtheleteInput::Main")
+                                      UFIMod.DeregisterUFI("AthleteInput::Main")
                                   End Function
 
         Me.Text = "Welcome"
@@ -120,13 +120,13 @@ Public Class AtheleteInput
                     r = DBOps.ReadSettings("Data:AutoSaved")
                     ChangeFlag = True
                 Else
-                    r = DBOps.ReadSettings("Data:AtheleteNames")
+                    r = DBOps.ReadSettings("Data:AthleteNames")
                 End If
             Else
-                r = DBOps.ReadSettings("Data:AtheleteNames")
+                r = DBOps.ReadSettings("Data:AthleteNames")
             End If
         Else
-            r = DBOps.ReadSettings("Data:AtheleteNames")
+            r = DBOps.ReadSettings("Data:AthleteNames")
         End If
         DBOps.WriteSettings("General:AutoSaved", {})
         DBOps.WriteSettings("Data:AutoSaved", {})
@@ -161,13 +161,13 @@ Public Class AtheleteInput
     End Sub
 
     Public Sub UpdateStat()
-        count.Text = "Total atheletes: " & ListBox1.Items.Count
+        count.Text = "Total athletes: " & ListBox1.Items.Count
     End Sub
 
 
 
     Public Function UpdateNames(r)
-        Return DBOps.WriteSettings("Data:AtheleteNames", r)
+        Return DBOps.WriteSettings("Data:AthleteNames", r)
     End Function
 
     Private Sub Confirm_Click(sender As Object, e As EventArgs) Handles confirm.Click
