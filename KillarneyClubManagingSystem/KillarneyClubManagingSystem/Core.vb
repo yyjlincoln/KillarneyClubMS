@@ -17,22 +17,22 @@
         End If
     End Function
     Function SelectMaxOrMin(Inverse, List, StartIndex, Optional IgnoreZero = True)
-        Dim pickIndex = NextValidIndex(IgnoreZero, List, StartIndex)
+        Dim selectedIndex = NextValidIndex(IgnoreZero, List, StartIndex)
         ' Now, loop through the list and determine the largest / smallest element and put it in the front.
         ' y here is the index of the list element, from x to Listlength - 1 (which is the unordered part of the list).
         For y As Integer = StartIndex To List.Count - 1
             ' Check mode
             If Inverse Then
-                If List(y) >= List(pickIndex) And Not (IgnoreZero And List(y) = 0) Then
-                    pickIndex = y
+                If List(y) >= List(selectedIndex) And Not (IgnoreZero And List(y) = 0) Then
+                    selectedIndex = y
                 End If
             Else
-                If List(y) <= List(pickIndex) And Not (IgnoreZero And List(y) = 0) Then
-                    pickIndex = y
+                If List(y) <= List(selectedIndex) And Not (IgnoreZero And List(y) = 0) Then
+                    selectedIndex = y
                 End If
             End If
         Next
-        Return pickIndex
+        Return selectedIndex
 
     End Function
     Function Sort(List As List(Of Double), Optional Inverse As Boolean = False, Optional EachIndexCallback As Action(Of List(Of Double), Integer, Integer) = Nothing, Optional FinalIndexListCallback As Action(Of List(Of Double), List(Of Integer)) = Nothing)
