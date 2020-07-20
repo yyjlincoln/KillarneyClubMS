@@ -16,7 +16,7 @@
             Return StartIndex
         End If
     End Function
-    Function Min(Inverse, List, StartIndex, Optional IgnoreZero = True)
+    Function SelectMaxOrMin(Inverse, List, StartIndex, Optional IgnoreZero = True)
         Dim pickIndex = NextValidIndex(IgnoreZero, List, StartIndex)
         ' Now, loop through the list and determine the largest / smallest element and put it in the front.
         ' y here is the index of the list element, from x to Listlength - 1 (which is the unordered part of the list).
@@ -68,21 +68,21 @@
             indexList.Add(i)
         Next
         ' Yeah vb is no good
-        Dim mx
-        Dim _temp
+        Dim selectedIndex
+        Dim _swap
         For x As Integer = 0 To ListLength - 1
             ' Initialize default "biggest / smallest" number as the queue start
-            mx = Min(Inverse, List, x)
+            selectedIndex = SelectMaxOrMin(Inverse, List, x)
             ' The biggest / smallest element is determined.
-            Debug.Print("Found largest / smallest in the list: " & List(mx))
+            Debug.Print("Found largest / smallest in the list: " & List(selectedIndex))
             ' Now, put the element at index x (which is the end of the ordered part so that part is not looped next time hence is ordered)
-            _temp = List(mx)
-            List.RemoveAt(mx)
-            List.Insert(x, _temp)
+            _swap = List(selectedIndex)
+            List.RemoveAt(selectedIndex)
+            List.Insert(x, _swap)
             ' Do the same for indexList so we can keep on track of which index is moved to where.
-            _temp = indexList(mx)
-            indexList.RemoveAt(mx)
-            indexList.Insert(x, _temp)
+            _swap = indexList(selectedIndex)
+            indexList.RemoveAt(selectedIndex)
+            indexList.Insert(x, _swap)
             ' Callback: Call eachIndexCallback with the index that is changed.
             If EachIndexCallback <> Nothing Then
                 EachIndexCallback(OriginalList, x, indexList(x))
