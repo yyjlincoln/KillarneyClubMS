@@ -1,0 +1,55 @@
+// This is pseudocode for the sorting algorithm.
+begin function Sort(List, Inverse?, EachIndexCallback?, FinalIndexCallback?)
+    let original list be a copy of List;
+    let list length be the length of List;
+    let index list be [0,1,2,3,...,list length - 1];
+
+    for each element in List, and store current index as variable index:
+
+        call SelectMaxOrMin(Inverse, List, StartIndex), and
+            store the result (Minimum or Maximum value depending on Inverse flag) in selectedIndex;
+        
+        move element at selectedIndex in List to position index
+        // This means that the list is divided into two sections:
+        // ordered and unordered. The ordered part starts from 0 to index.
+        // All other values are considered as unordered.
+        
+        // Do the same for index list.
+        move element at selectedIndex in index list to position index
+
+        // Now call the callback function
+        if EachIndexCallback exists then
+            call EachIndexCallback(original list, index, original index for the selectedIndex)
+        end if
+
+    end for
+    // All sorted, now callback final index
+    if FinalIndexCallback exists then
+        call FinalIndexCallback(original list, index list)
+    end if
+
+end
+
+begin function SelectMaxOrMin(Inverse, List, StartIndex, IgnoreZero?)
+
+    // Set the initial index to be the next valid index (depending on IgnoreZero Flag)
+    // This is to ensure the function has something to compare with at the start.
+    call NextValidIndex(IgnoreZero, List, StartIndex) and
+        store the result in selectedIndex
+
+
+    for each element in List, and store current index as index
+
+        if Inverse is true then
+            // if value of selectedIndex in List is less than the 
+            // TODO
+        else
+
+        end if
+
+    end for
+end
+
+begin function NextValidIndex()
+
+end
