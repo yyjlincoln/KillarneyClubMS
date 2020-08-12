@@ -36,7 +36,7 @@ Partial Class Main
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(540, 882)
+        Me.Button2.Location = New System.Drawing.Point(471, 816)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(371, 49)
         Me.Button2.TabIndex = 7
@@ -45,7 +45,7 @@ Partial Class Main
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(938, 882)
+        Me.Button1.Location = New System.Drawing.Point(869, 816)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(130, 50)
         Me.Button1.TabIndex = 6
@@ -93,7 +93,7 @@ Partial Class Main
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(661, 89)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(250, 24)
+        Me.Label4.Size = New System.Drawing.Size(238, 24)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Athletes Management"
         '
@@ -102,7 +102,7 @@ Partial Class Main
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(577, 692)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(418, 24)
+        Me.Label3.Size = New System.Drawing.Size(406, 24)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Double click to manage an athlete"
         '
@@ -117,7 +117,7 @@ Partial Class Main
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(229, 883)
+        Me.Button4.Location = New System.Drawing.Point(160, 817)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(290, 49)
         Me.Button4.TabIndex = 9

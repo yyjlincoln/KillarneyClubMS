@@ -34,12 +34,12 @@ Partial Class Placing
         Me.ListBox1.ItemHeight = 24
         Me.ListBox1.Location = New System.Drawing.Point(45, 89)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(558, 796)
+        Me.ListBox1.Size = New System.Drawing.Size(558, 748)
         Me.ListBox1.TabIndex = 0
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(483, 908)
+        Me.Button1.Location = New System.Drawing.Point(491, 915)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(112, 51)
         Me.Button1.TabIndex = 1
@@ -57,7 +57,7 @@ Partial Class Placing
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(244, 909)
+        Me.Button2.Location = New System.Drawing.Point(253, 918)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(204, 48)
         Me.Button2.TabIndex = 3
@@ -68,7 +68,7 @@ Partial Class Placing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(655, 1018)
+        Me.ClientSize = New System.Drawing.Size(655, 1044)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
