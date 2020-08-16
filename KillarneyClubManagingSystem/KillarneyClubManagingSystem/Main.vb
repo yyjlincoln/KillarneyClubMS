@@ -46,7 +46,12 @@ Public Class Main
     Private Sub Maindes(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         e.Cancel = True
         If MsgBox("Exit Program?", vbYesNo) = vbYes Then
-            End
+            Try
+                End
+            Catch ex As Exception
+                End
+            End Try
+
         End If
     End Sub
 

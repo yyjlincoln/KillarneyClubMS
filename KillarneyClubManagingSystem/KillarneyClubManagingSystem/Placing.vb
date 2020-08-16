@@ -9,6 +9,8 @@ Public Class Placing
     Public Mode
     Public Name
 
+    Private AdjustmentFactor = 0.00001
+
     Public Function Reload() As Object Implements UFIBase.Reload
         ReloadFlag = True
         Label1.Show()
@@ -42,29 +44,63 @@ Public Class Placing
                     ScoresCombined.updval(AthleteNames(y), CType(ScoresCombined.val(AthleteNames(y)), Double) + CurrentScores.val(AthleteNames(y)))
                 Next
             Next
-            ' Now, rank the total score
-            Dim FinalScoreRank = Core.SortMappedData(ScoresCombined, True)
-            ' Display data
-            For x As Integer = 0 To FinalScoreRank.Count - 1
-                ListBox1.Items.Add(RenderEntry(FinalScoreRank(x), ScoresCombined.val(FinalScoreRank(x)), x + 1))
-            Next
-        ElseIf Me.Mode = "ByEvent" Then
-            ' Initialize a blank mappeddata
-            Dim Scores As MappedData = New MappedData()
-            If Not Core.GetAllEvents().Contains(Me.Name) Then
-                Logging.Warn("Placing.ReadData()", "Event " & Me.Name & "does not exist!")
-                Me.Close()
-            End If
-            ' Get scores
-            Scores = Calculator.AllocateScoresByEventName(Me.Name)
-            ' Order the scores
-            Dim ScoresOrder = Core.SortMappedData(Scores, True)
-            ' Render using ordered scores
-            For x As Integer = 0 To ScoresOrder.Count - 1
-                ListBox1.Items.Add(RenderEntry(ScoresOrder(x), Scores.val(ScoresOrder(x)), x + 1))
-            Next
-        Else
-            Logging.Warn("Logging.ReadData()", "No such mode: " & Me.Mode)
+
+            ' =======
+            ' Temp Fix: When there is a draw, the athlete with faster 200m result wins
+            ' Idea: Get the raw rank for 200m and minus the rank times an adjustment 
+            ' factor From their points.
+            ' For example: 200m rank is 11, 11*0.000001 is 0.000011. Minus that from the result (used for ranking, not the actual recorded / displayed).
+            ' This will not impact on the overall score (as they are integers and 0.00001 is a very small number.
+            ' This will only cause problems if there is more than 100000 athletes because the adjusted point is greater than the 
+            ' smallest possible point.)
+            ' =======
+
+            Dim ScoresCombinedShadow As MappedData = New MappedData()
+                ScoresCombinedShadow.Init(ScoresCombined.Flatten())
+                ' This creates a copy of the original data instead of referencing it to the original data (which will change it).
+                ' It basically creates a new instance of MappedData and then Flatten the original data to Data class, then use that info to create a new copy.
+
+                If EventNames.Contains("Long Jump") Then
+                Dim _LongJump = Calculator.SortEvents("Long Jump")
+                For placing As Integer = 0 To _LongJump.count - 1
+                    If ScoresCombined.val(_LongJump(placing)) - placing * AdjustmentFactor > 0 Then
+                        ScoresCombinedShadow.updval(_LongJump(placing), ScoresCombined.val(_LongJump(placing)) - placing * AdjustmentFactor)
+                    Else
+                        ScoresCombinedShadow.updval(_LongJump(placing), ScoresCombined.val(_LongJump(placing)))
+                    End If
+                Next
+
+            Else
+                    Logging.Critical("Placing.ReadData()", "Event Long Jump does not exist, the system might not be able to handle draws correctly!")
+                End If
+                ' =======
+                ' END FIX
+                ' =======
+
+                ' Now, rank the total score
+                '            Dim FinalScoreRank = Core.SortMappedData(ScoresCombined, True)
+                Dim FinalScoreRank = Core.SortMappedData(ScoresCombinedShadow, True)
+                ' Display data
+                For x As Integer = 0 To FinalScoreRank.Count - 1
+                    ListBox1.Items.Add(RenderEntry(FinalScoreRank(x), ScoresCombined.val(FinalScoreRank(x)), x + 1))
+                Next
+            ElseIf Me.Mode = "ByEvent" Then
+                ' Initialize a blank mappeddata
+                Dim Scores As MappedData = New MappedData()
+                If Not Core.GetAllEvents().Contains(Me.Name) Then
+                    Logging.Warn("Placing.ReadData()", "Event " & Me.Name & "does not exist!")
+                    Me.Close()
+                End If
+                ' Get scores
+                Scores = Calculator.AllocateScoresByEventName(Me.Name)
+                ' Order the scores
+                Dim ScoresOrder = Core.SortMappedData(Scores, True)
+                ' Render using ordered scores
+                For x As Integer = 0 To ScoresOrder.Count - 1
+                    ListBox1.Items.Add(RenderEntry(ScoresOrder(x), Scores.val(ScoresOrder(x)), x + 1))
+                Next
+            Else
+                Logging.Warn("Logging.ReadData()", "No such mode: " & Me.Mode)
             Me.Close()
         End If
 
@@ -149,8 +185,49 @@ Public Class Placing
             ScoresCombined.Name = "Overall Score"
             Output.Insert(0, ScoresCombined)
 
+            ' =======
+            ' Temp Fix: When there is a draw, the athlete with faster 200m result wins
+            ' Idea: Get the raw rank for 200m and minus the rank times an adjustment 
+            ' factor From their points.
+            ' For example: 200m rank is 11, 11*0.000001 is 0.000011. Minus that from the result (used for ranking, not the actual recorded / displayed).
+            ' This will not impact on the overall score (as they are integers and 0.00001 is a very small number.
+            ' This will only cause problems if there is more than 100000 athletes because the adjusted point is greater than the 
+            ' smallest possible point.)
+            ' =======
+
+            Dim ScoresCombinedShadow As MappedData = New MappedData()
+            ScoresCombinedShadow.Init(ScoresCombined.Flatten())
+            ' This creates a copy of the original data instead of referencing it to the original data (which will change it).
+            ' It basically creates a new instance of MappedData and then Flatten the original data to Data class, then use that info to create a new copy.
+
+            If EventNames.Contains("Long Jump") Then
+                Dim _LongJump = Calculator.SortEvents("Long Jump")
+                For placing As Integer = 0 To _LongJump.count - 1
+                    If ScoresCombined.val(_LongJump(placing)) - placing * AdjustmentFactor > 0 Then
+                        ScoresCombinedShadow.updval(_LongJump(placing), ScoresCombined.val(_LongJump(placing)) - placing * AdjustmentFactor)
+                    Else
+                        ScoresCombinedShadow.updval(_LongJump(placing), ScoresCombined.val(_LongJump(placing)))
+                    End If
+                Next
+
+            Else
+                Logging.Critical("Placing.ReadData()", "Event Long Jump does not exist, the system might not be able to handle draws correctly!")
+            End If
+
+            ' Also insert this to the output list so it's clear to the users
+
+            ScoresCombinedShadow.Name = "Overall Score (Adjusted)"
+            Output.Add(ScoresCombinedShadow)
+
+            ' =======
+            ' END FIX
+            ' =======
+
+
+
             ' Now, rank the total score
-            Dim FinalScoreRank = Core.SortMappedData(ScoresCombined, True)
+            '            Dim FinalScoreRank = Core.SortMappedData(ScoresCombined, True)
+            Dim FinalScoreRank = Core.SortMappedData(ScoresCombinedShadow, True)
 
             ' In order to add a rank column, a MappedData need to be constructed
             Dim FinalRankMD = New MappedData()
